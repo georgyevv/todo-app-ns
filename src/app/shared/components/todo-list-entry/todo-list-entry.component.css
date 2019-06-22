@@ -1,0 +1,41 @@
+/* Add mobile styles for the component here.  */
+.todo {
+  padding: 10 0;
+  height: 100%;
+  background-color: white;
+}
+
+.todo__complete {
+  text-align: center;
+  vertical-align: center;
+  font-size: 26;
+}
+
+.todo__favourite {
+  text-align: center;
+  vertical-align: center;
+  font-size: 26;
+}
+
+.todo__title {
+  font-size: 16;
+  font-weight: bold;
+  vertical-align: center;
+}
+
+.todo__title--strike {
+  text-decoration: line-through;
+}
+
+.todo__description {
+  font-size: 12;
+  font-weight: normal;
+}
+
+.completed {
+  color: green;
+}
+
+.favourite {
+  color: blue;
+}

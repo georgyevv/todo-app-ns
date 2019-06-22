@@ -1,0 +1,9 @@
+{
+  "main": "main.js",
+  "android": {
+    "v8Flags": "--expose_gc"
+  },
+  "devDependencies": {
+    "@nativescript/schematics": "^0.6.0"
+  }
+}

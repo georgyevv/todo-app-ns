@@ -1,0 +1,28 @@
+<GridLayout class="add-todo" width="100%" height="120" rows="50,70" columns="50,*,50">
+  <Label class="far add-todo__complete" row="0" col="0" text="&#xf111;"></Label>
+  <TextField class="add-todo__input" row="0" col="1" hint="Add a todo" [(ngModel)]="todo.title"></TextField>
+  <Label (tap)="onAddTodo()" class="fas add-todo__send" row="0" col="2" text="&#xf360;"> </Label>
+
+  <ScrollView row="1" col="0" colSpan="3" orientation="horizontal">
+    <StackLayout orientation="horizontal" padding="5">
+      <StackLayout width="80" class="options" orientation="horizontal">
+        <Label text="&#xf0ae;" class="fas options__icon options__icon--blue"></Label>
+        <Label text="Tasks" class="options__text"></Label>
+      </StackLayout>
+
+      <StackLayout width="120" class="options" orientation="horizontal">
+        <Label text="&#xf073;" class="fas options__icon options__icon--dark-blue"></Label>
+      </StackLayout>
+
+      <StackLayout width="110" class="options" orientation="horizontal">
+        <Label text="&#xf017;" class="far options__icon options__icon--green"></Label>
+        <Label text="Remind me" class="options__text"></Label>
+      </StackLayout>
+
+      <StackLayout width="85" class="options" orientation="horizontal">
+        <Label text="&#xf2f9;" class="fas options__icon options__icon--red"></Label>
+        <Label text="Repeat" class="options__text"></Label>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
+</GridLayout>

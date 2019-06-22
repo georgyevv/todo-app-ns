@@ -1,0 +1,14 @@
+<GridLayout columns="40, *, 40" rows="20, 20" class="todo">
+  <StackLayout (tap)="onToggleComplete(todo)" row="0" col="0" rowSpan="2" class="todo__complete">
+    <Label *ngIf="!todo.isCompleted" text="&#xf111;" class="far"> </Label>
+    <Label *ngIf="todo.isCompleted" text="&#xf058;" class="fas completed"> </Label>
+  </StackLayout>
+
+  <Label (tap)="onTapDetails()" [text]="todo.title" [rowSpan]="showDetails ? '1' : '2'" [ngClass]="{ 'todo__title--strike': todo.isCompleted }" class="todo__title" row="0" col="1"> </Label>
+  <Label (tap)="onTapDetails()" *ngIf="showDetails" [text]="todo.description" class="todo__description" row="1" col="1"> </Label>
+
+  <StackLayout row="0" col="3" rowSpan="2" class="todo__favourite">
+    <Label *ngIf="!todo.isFavourite" text="&#xf005;" (tap)="onToggleFavourite(todo)" class="far"> </Label>
+    <Label *ngIf="todo.isFavourite" text="&#xf005;" (tap)="onToggleFavourite(todo)" class="fas favourite"> </Label>
+  </StackLayout>
+</GridLayout>

@@ -1,0 +1,73 @@
+/* Add mobile styles for the component here.  */
+.option {
+  height: 50;
+  width: 100%;
+}
+
+.option__main {
+  padding: 0 10;
+  height: 60;
+}
+
+.option__icon {
+  font-size: 20;
+  text-align: center;
+  vertical-align: center;
+}
+
+.option__text {
+  text-align: left;
+  vertical-align: center;
+  font-size: 16;
+}
+
+.option__remove {
+  text-align: center;
+  vertical-align: center;
+  font-size: 14;
+  color: darkgray;
+}
+
+.option__note {
+  text-align: left;
+  font-size: 16;
+  min-height: 200;
+}
+
+.option__separator {
+  border-bottom-color: lightgray;
+  border-bottom-width: 1;
+  padding-bottom: 5;
+}
+
+.container {
+  border-color: lightgray;
+  border-width: 1;
+  vertical-align: center;
+  margin-bottom: 10;
+  width: 95%;
+}
+
+.selected {
+  color: blue;
+}
+
+.remove-details {
+  height: 50;
+  width: 100%;
+  border-top-color: lightgray;
+  border-top-width: 1;
+}
+
+.remove-details__icon {
+  text-align: center;
+  vertical-align: center;
+  font-size: 16;
+  color: rgb(110, 110, 110);
+}
+
+.remove-details__text {
+  font-size: 14;
+  margin-left: 10;
+  vertical-align: center;
+}

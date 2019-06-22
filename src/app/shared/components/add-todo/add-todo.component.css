@@ -1,0 +1,47 @@
+.add-todo {
+  border-top-color: black;
+  border-top-width: 1;
+  background-color: white;
+}
+.add-todo__input {
+  width: 100%;
+}
+.add-todo__complete {
+  text-align: center;
+  vertical-align: center;
+  font-size: 26;
+}
+.add-todo__send {
+  text-align: center;
+  vertical-align: center;
+  font-size: 26;
+}
+
+.options {
+  border-radius: 100%;
+  background-color: lightgray;
+  padding: 5 10;
+  margin: 5 5 5 5;
+  height: 40;
+}
+.options__icon {
+  text-align: center;
+  vertical-align: center;
+  margin-right: 5;
+}
+.options__icon--blue {
+  color: blue;
+}
+.options__icon--dark-blue {
+  color: darkblue;
+}
+.options__icon--green {
+  color: green;
+}
+.options__icon--red {
+  color: red;
+}
+.options__text {
+  text-align: center;
+  vertical-align: center;
+}

@@ -1,0 +1,61 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
+-->
+<RadSideDrawer [drawerTransition]="sideDrawerTransition">
+	<GridLayout tkDrawerContent rows="auto, auto, *, auto" class="sidedrawer sidedrawer-left">
+		<GridLayout row="0" rows="auto" columns="*, 50" (tap)="toggleUserOptions()">
+			<StackLayout row="0" col="0" class="sidedrawer-header">
+				<Label class="sidedrawer-header-image fas" text="&#xf2bd;"></Label>
+				<Label class="sidedrawer-header-brand" text="User Name"></Label>
+				<Label class="footnote" text="username@mail.com"></Label>
+			</StackLayout>
+			<Label row="0" col="1" [text]="expandUserOptions ? '&#xf106;' : '&#xf107;'" class="fas user-options"></Label>
+		</GridLayout>
+
+		<StackLayout row="1" class="hr-light m-10"></StackLayout>
+
+		<StackLayout *ngIf="!expandUserOptions" row="2" class="sidedrawer-content">
+			<GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/my-day')">
+				<Label col="0" text="&#xf185;" class="far"></Label>
+				<Label col="1" text="My day" class="p-l-10"></Label>
+			</GridLayout>
+			<GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/important')">
+				<Label col="0" text="&#xf005;" class="far"></Label>
+				<Label col="1" text="Important" class="p-l-10"></Label>
+			</GridLayout>
+			<GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/planned')">
+				<Label col="0" text="&#xf073;" class="far"></Label>
+				<Label col="1" text="Planned" class="p-l-10"></Label>
+			</GridLayout>
+			<GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/tasks')">
+				<Label col="0" text="&#xf0ae;" class="fas"></Label>
+				<Label col="1" text="Tasks" class="p-l-10"></Label>
+			</GridLayout>
+		</StackLayout>
+
+		<StackLayout *ngIf="expandUserOptions" row="2" class="sidedrawer-content">
+			<GridLayout columns="auto, *" class="sidedrawer-list-item">
+				<Label text="&#xf067;" class="fas"></Label>
+				<Label col="1" text="Add account" class="p-l-10"></Label>
+			</GridLayout>
+			<GridLayout columns="auto, *" class="sidedrawer-list-item">
+				<Label text="&#xf4ff;" class="fas"></Label>
+				<Label col="1" text="Manage accounts" class="p-l-10"></Label>
+			</GridLayout>
+			<StackLayout class="hr-light m-b-10"></StackLayout>
+			<GridLayout columns="auto, *" class="sidedrawer-list-item">
+				<Label text="&#xf013;" class="fas"></Label>
+				<Label col="1" text="Settings" class="p-l-10"></Label>
+			</GridLayout>
+		</StackLayout>
+
+		<GridLayout row="3" columns="auto, *" class="sidedrawer-footer">
+			<Label col="0" text="&#xf067;" class="fas"></Label>
+			<Label col="1" text="New list" class="p-l-10 m-b-20"></Label>
+		</GridLayout>
+	</GridLayout>
+
+	<page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
+</RadSideDrawer>
