@@ -5,12 +5,10 @@ import { SharedModule } from "~/app/shared/shared.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
     declarations: [
-        MyDayHostComponent,
-        TodoListComponent
+        MyDayHostComponent
     ],
     imports: [
         NativeScriptCommonModule, 

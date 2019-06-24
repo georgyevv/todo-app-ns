@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { RadListViewComponent } from 'nativescript-ui-listview/angular/listview-directives';
@@ -7,9 +7,7 @@ import { screen } from 'tns-core-modules/platform';
 import { Button } from 'tns-core-modules/ui/button';
 import { View } from 'tns-core-modules/ui/core/view/view';
 import { AbsoluteLayout } from 'tns-core-modules/ui/layouts/absolute-layout';
-
 import { Todo } from '~/app/shared/models/models';
-import { TodoService } from '~/app/shared/services/todo.service';
 
 @Component({
     selector: 'ns-todo-list',
@@ -21,10 +19,12 @@ export class TodoListComponent implements OnInit {
     @ViewChild('addTodoButton', { static: true }) addTodoButton: ElementRef;
     @ViewChild('myListView', { read: RadListViewComponent, static: false }) myListViewComponent: RadListViewComponent;
 
-    public showAddTodo: boolean = false;
-    public todoItems: ObservableArray<Todo>;
+    @Input() todoItems: ObservableArray<Todo>;
+    @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
-    constructor(private readonly routerExtensions: RouterExtensions, private readonly todoService: TodoService) {}
+    public showAddTodo: boolean = false;
+
+    constructor(private readonly routerExtensions: RouterExtensions) {}
 
     public ngOnInit() {
         const button = <Button>this.addTodoButton.nativeElement;
@@ -32,10 +32,6 @@ export class TodoListComponent implements OnInit {
         AbsoluteLayout.setTop(button, screen.mainScreen.heightDIPs - Number(button.height) - 150);
         // This is not okay must be changes (40) wtf is 40 ? margin righ
         AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 40);
-
-        this.todoService.getTodos().subscribe(data => {
-            this.todoItems = new ObservableArray(data);
-        });
     }
 
     public onItemTap(id: number) {
@@ -44,10 +40,11 @@ export class TodoListComponent implements OnInit {
 
     public onAddTodoAction() {
         this.showAddTodo = true;
+        console.dir(this.todoItems);
     }
 
     public onAddTodo(todo: Todo) {
-        this.todoService.addTodo(todo);
+        this.addTodo.emit(todo);
         this.showAddTodo = false;
     }
 

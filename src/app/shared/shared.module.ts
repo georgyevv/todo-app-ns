@@ -4,13 +4,15 @@ import { DropdownComponent } from "./components/dropdown/dropdown.component";
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodoDetailsComponent } from './components/todo-details/todo-details.component';
 import { TodoListEntryComponent } from './components/todo-list-entry/todo-list-entry.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @NgModule({
     declarations: [
         DropdownComponent,
         AddTodoComponent,
         TodoDetailsComponent,
-        TodoListEntryComponent
+        TodoListEntryComponent,
+        TodoListComponent,
     ],
     imports: [
         NativeScriptCommonModule
@@ -19,7 +21,8 @@ import { TodoListEntryComponent } from './components/todo-list-entry/todo-list-e
         DropdownComponent,
         AddTodoComponent,
         TodoDetailsComponent,
-        TodoListEntryComponent
+        TodoListEntryComponent,
+        TodoListComponent,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })
