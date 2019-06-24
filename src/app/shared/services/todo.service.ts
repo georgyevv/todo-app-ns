@@ -1,54 +1,81 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { filter, flatMap } from "rxjs/operators";
+import { Observable, ReplaySubject, BehaviorSubject } from "rxjs";
+import { filter, flatMap, pairwise, tap, map } from "rxjs/operators";
 import { Todo, TodoOptions } from "../models/models";
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
     providedIn: "root"
 })
 export class TodoService {
-    private rawTodoItems: Todo[] = [];
-    private todoItems$$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
+    private baseUrl: string = "https://ns-todo-c6003.firebaseio.com/";
+    private collectionUrl: string = "todos.json";
 
-    constructor() {
-        const todoItems = [];
-        for (let index = 0; index < 10; index++) {
-            todoItems.push({
-                id: index,
-                title: "New test todo " + index,
-                description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                createdOn: new Date(),
-                createdBy: "Jordan Georgiev " + index,
-                modifiedOn: new Date(),
-                modifiedBy: "Jordan Georgiev " + index,
-                options: {} as TodoOptions
-            } as Todo);
-        }
-
-        this.rawTodoItems = todoItems;
-        this.todoItems$$.next(todoItems);
+    constructor(private http: HttpClient) {
     }
 
     public getTodos(): Observable<Todo[]> {
-        return this.todoItems$$.asObservable();
+        return this.http.get(this.baseUrl + this.collectionUrl).pipe(map((data: any[]) => {
+            console.log(data);
+            return data.map((todo: any) => {
+                console.log(todo);
+                return todo as Todo;
+            });
+        }));
+    }
+
+    public getMyDayTodos(): Observable<Todo[]> {
+        console.log('getMyDayTodos');
+
+        return this.getTodos();
+        // return this.getTodos().pipe(
+        //     flatMap(todo => todo),
+        //     filter((item: Todo) => item.options.isAddedToMyDay === true),
+        //     pairwise()
+        // );
+    }
+
+    public getImportantTodos(): Observable<Todo[]> {
+        console.log('getImportantTodos');
+
+        return this.getTodos();
+        // return this.getTodos().pipe(
+        //     flatMap(todo => todo),
+        //     filter((item: Todo) => item.options.isAddedToImportant === true),
+        //     pairwise(),
+        // );
     }
 
     public getTodo(id: number): Observable<Todo> {
-        return this.todoItems$$.asObservable().pipe(
+        console.log('getTodo');
+
+        return this.getTodos().pipe(
             flatMap(todo => todo),
             filter((todo: Todo) => todo.id == id)
         );
     }
 
-    public deleteTodo(id: number) {
-        const items = this.rawTodoItems.filter((todo: Todo) => todo.id !== id);
-        this.todoItems$$.next(items);
-        this.rawTodoItems = items;
+    public addTodo(todo: Todo) {
+        console.log('addTodo');
+
+        this.http.post(this.baseUrl + this.collectionUrl, todo).subscribe(response => {
+            console.log(response);
+        })
     }
 
-    public addTodo(todo: Todo) {
-        this.rawTodoItems.push(todo);
-        this.todoItems$$.next(this.rawTodoItems);
+    public updateTodo(todo: Todo): void {
+        console.log('updateTodo');
+
+        this.http.put(this.baseUrl + this.collectionUrl, todo).subscribe(response => {
+            console.log(response);
+        })
+    }
+
+    public deleteTodo(id: number) {
+        console.log('deleteTodo');
+        // this.http.delete(this.baseUrl + "todos.json", )
+        // const items = this.rawTodoItems.filter((todo: Todo) => todo.id !== id);
+        // this.rawTodoItems = items;
+        // this.todoItems$$.next(items);
     }
 }

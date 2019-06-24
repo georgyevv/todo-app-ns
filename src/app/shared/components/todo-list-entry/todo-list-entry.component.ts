@@ -7,26 +7,24 @@ import { Todo } from "~/app/shared/models/models";
     styleUrls: ["./todo-list-entry.component.css"],
     moduleId: module.id
 })
-export class TodoListEntryComponent implements OnInit {
+export class TodoListEntryComponent {
 
     @Input() todo: Todo;
     @Input() showDetails: boolean = false;
+
     @Output() itemTap: EventEmitter<number> = new EventEmitter<number>();
+    @Output() toggleFavourite: EventEmitter<Todo> = new EventEmitter<Todo>();
+    @Output() toggleComplete: EventEmitter<Todo> = new EventEmitter<Todo>();
 
-    public onToggleComplete(todo: Todo) {
-        todo.isCompleted = !todo.isCompleted;
+    public onToggleComplete() {
+        this.toggleComplete.emit(this.todo);
     }
 
-    ngOnInit(): void {
-        console.dir(this.todo);
-    }
-
-    public onToggleFavourite(todo: Todo) {
-        todo.isFavourite = !todo.isFavourite;
+    public onToggleFavourite() {
+        this.toggleFavourite.emit(this.todo);
     }
 
     public onTapDetails() {
-        console.dir(this.todo);
         this.itemTap.emit(this.todo.id);
     }
 }

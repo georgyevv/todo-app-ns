@@ -13,11 +13,11 @@ import { Todo } from '~/app/shared/models/models';
 })
 export class MyDayHostComponent implements OnInit {
     public todoItems: ObservableArray<Todo>;
-    
+
     constructor(private readonly todoService: TodoService) {}
 
     public ngOnInit() {
-        this.todoService.getTodos().subscribe(data => {
+        this.todoService.getMyDayTodos().subscribe(data => {
             this.todoItems = new ObservableArray(data);
         });
     }

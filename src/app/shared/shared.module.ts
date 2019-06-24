@@ -5,6 +5,8 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodoDetailsComponent } from './components/todo-details/todo-details.component';
 import { TodoListEntryComponent } from './components/todo-list-entry/todo-list-entry.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
         TodoListComponent,
     ],
     imports: [
-        NativeScriptCommonModule
+        NativeScriptCommonModule,
+        NativeScriptUIListViewModule,
+        NativeScriptFormsModule,
     ],
     exports: [
         DropdownComponent,

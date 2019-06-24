@@ -11,10 +11,10 @@ export interface Todo extends BaseObject {
     description: string;
     isCompleted: boolean;
     completedOn: Date;
-    isFavourite: boolean;
     options: TodoOptions;
 }
 
 export interface TodoOptions {
     isAddedToMyDay: boolean;
+    isAddedToImportant: boolean;
 }
