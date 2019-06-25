@@ -16,6 +16,12 @@ refer to http://docs.nativescript.org/ui/theme.
   border-color: black;
 }
 
+.activity-indicator {
+  height: 100;
+  width: 100;
+  vertical-align: center;
+}
+
 .far {
   font-family: Font Awesome 5 Free, fa-regular-400;
   font-weight: 400;

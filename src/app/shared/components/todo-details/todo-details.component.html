@@ -1,29 +1,20 @@
 <ActionBar class="action-bar">
-  <!--
-          Use the NavigationButton as a side-drawer button in Android
-          because ActionItems are shown on the right side of the ActionBar
-          -->
   <NavigationButton ios:visibility="collapsed" icon="res://menu_black" (tap)="onDrawerButtonTap()"></NavigationButton>
-  <!--
-          Use the ActionItem for IOS with position set to left. Using the
-          NavigationButton as a side-drawer button in iOS is not possible,
-          because its function is to always navigate back in the application.
-          -->
   <ActionItem icon="res://navigation/menu_black" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left"> </ActionItem>
   <Label class="action-bar-title" text="My day"></Label>
 </ActionBar>
 
-<FlexboxLayout flexDirection="column">
+<FlexboxLayout flexDirection="column" *ngIf="!isBusy; else spinner">
   <StackLayout flexGrow="1" orientation="vertical">
     <StackLayout class="option option__main">
-      <ns-todo-list-entry [todo]="todo"></ns-todo-list-entry>
+      <ns-todo-list-entry [todo]="todo" (toggleComplete)="onToggleComplete()" (toggleFavourite)="onToggleFavourite()"></ns-todo-list-entry>
     </StackLayout>
 
     <StackLayout class="container">
-      <GridLayout columns="40, *, 40" rows="50" [ngClass]="{ selected: todo.options.isAddedToMyDay }" class="option" (tap)="onToggleAddToMyDay()">
+      <GridLayout columns="40, *, 40" rows="50" [ngClass]="{ selected: todo.isAddedToMyDay }" class="option" (tap)="onToggleAddToMyDay()">
         <Label text="&#xf185;" class="far option__icon" row="0" col="0"> </Label>
-        <Label [text]="todo.options.isAddedToMyDay ? 'Added to My Day' : 'Add to My Day'" class="option__text" row="0" col="1"> </Label>
-        <Label *ngIf="todo.options.isAddedToMyDay" text="&#xf00d;" class="fas option__remove" row="0" col="2"> </Label>
+        <Label [text]="todo.isAddedToMyDay ? 'Added to My Day' : 'Add to My Day'" class="option__text" row="0" col="1"> </Label>
+        <Label *ngIf="todo.isAddedToMyDay" text="&#xf00d;" class="fas option__remove" row="0" col="2"> </Label>
       </GridLayout>
     </StackLayout>
 
@@ -31,19 +22,16 @@
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf017;" class="far option__icon" row="0" col="0"> </Label>
         <Label [text]="'Remind me'" class="option__text option__separator" row="0" col="1"> </Label>
-        <!-- <Label text="&#xf005;" class="far" row="0" col="2"> </Label> -->
       </GridLayout>
 
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf073;" class="fas option__icon" row="0" col="0"> </Label>
         <Label [text]="'Add due date'" class="option__text option__separator" row="0" col="1"> </Label>
-        <!-- <Label text="&#xf005;" class="far" row="0" col="2"> </Label> -->
       </GridLayout>
 
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf2f9;" class="fas option__icon" row="0" col="0"> </Label>
         <Label [text]="'Repeat'" class="option__text option__separator" row="0" col="1"> </Label>
-        <!-- <Label text="&#xf005;" class="far" row="0" col="2"> </Label> -->
       </GridLayout>
     </StackLayout>
 
@@ -51,12 +39,11 @@
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf0c6;" class="fas option__icon" row="0" col="0"> </Label>
         <Label [text]="'Add a file'" class="option__text" row="0" col="1"> </Label>
-        <!-- <Label text="&#xf005;" class="far" row="0" col="2"> </Label> -->
       </GridLayout>
     </StackLayout>
 
     <StackLayout class="container">
-      <TextView hint="Add a note" class="option__note" [(ngModel)]="todo.description"> </TextView>
+      <TextView hint="Add a note" class="option__note" [ngModel]="todo.description" (blur)="onDescriptionChange($event)"> </TextView>
     </StackLayout>
   </StackLayout>
 
@@ -67,3 +54,9 @@
     </GridLayout>
   </StackLayout>
 </FlexboxLayout>
+
+<ng-template #spinner>
+  <FlexboxLayout justifyContent="center" alignItems="center">
+    <ActivityIndicator #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+  </FlexboxLayout>
+</ng-template>

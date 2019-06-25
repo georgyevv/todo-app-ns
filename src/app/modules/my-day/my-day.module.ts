@@ -12,7 +12,7 @@ import { MyDayHostComponent } from "./my-day-host/my-day-host.component";
     imports: [
         NativeScriptCommonModule,
         NativeScriptRouterModule,
-        SharedModule
+        SharedModule,
     ],
     exports: [MyDayHostComponent],
     schemas: [NO_ERRORS_SCHEMA]

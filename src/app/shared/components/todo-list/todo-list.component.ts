@@ -17,13 +17,13 @@ import { TodoService } from "../../services/todo.service";
     moduleId: module.id
 })
 export class TodoListComponent implements OnInit {
+    public showAddTodo: boolean = false;
+
     @ViewChild("addTodoButton", { static: true }) addTodoButton: ElementRef;
     @ViewChild("myListView", { read: RadListViewComponent, static: false }) myListViewComponent: RadListViewComponent;
 
     @Input() todoItems: ObservableArray<Todo>;
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
-
-    public showAddTodo: boolean = false;
 
     constructor(private readonly routerExtensions: RouterExtensions, private readonly todoService: TodoService) {}
 
@@ -41,7 +41,6 @@ export class TodoListComponent implements OnInit {
 
     public onAddTodoAction() {
         this.showAddTodo = true;
-        console.dir(this.todoItems);
     }
 
     public onAddTodo(todo: Todo) {
@@ -50,7 +49,7 @@ export class TodoListComponent implements OnInit {
     }
 
     public onToggleFavourite(todo: Todo) {
-        todo.options.isAddedToImportant = !todo.options.isAddedToImportant;
+        todo.isAddedToImportant = !todo.isAddedToImportant;
         this.todoService.updateTodo(todo);
     }
 
@@ -80,6 +79,8 @@ export class TodoListComponent implements OnInit {
     }
 
     public onRightSwipeClick(args) {
-        this.todoItems.splice(this.todoItems.indexOf(args.object.bindingContext), 1);
+        const todo: Todo = <Todo>args.object.bindingContext;
+        this.todoService.deleteTodo(todo.id);
+        this.myListViewComponent.listView.notifySwipeToExecuteFinished();
     }
 }

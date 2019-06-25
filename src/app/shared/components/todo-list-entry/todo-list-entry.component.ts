@@ -12,7 +12,7 @@ export class TodoListEntryComponent {
     @Input() todo: Todo;
     @Input() showDetails: boolean = false;
 
-    @Output() itemTap: EventEmitter<number> = new EventEmitter<number>();
+    @Output() itemTap: EventEmitter<string> = new EventEmitter<string>();
     @Output() toggleFavourite: EventEmitter<Todo> = new EventEmitter<Todo>();
     @Output() toggleComplete: EventEmitter<Todo> = new EventEmitter<Todo>();
 

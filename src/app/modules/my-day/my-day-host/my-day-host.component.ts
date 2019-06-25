@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from 'tns-core-modules/application';
+import { Todo } from '~/app/shared/models/models';
 import { TodoService } from '~/app/shared/services/todo.service';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
-import { Todo } from '~/app/shared/models/models';
 
 @Component({
     selector: 'ns-my-day-host',
@@ -14,12 +14,13 @@ import { Todo } from '~/app/shared/models/models';
 export class MyDayHostComponent implements OnInit {
     public todoItems: ObservableArray<Todo>;
 
-    constructor(private readonly todoService: TodoService) {}
+    constructor(public readonly todoService: TodoService) {}
 
     public ngOnInit() {
-        this.todoService.getMyDayTodos().subscribe(data => {
-            this.todoItems = new ObservableArray(data);
-        });
+        console.log("MyDayHostComponent init");
+        this.todoService.getMyDayTodos$.subscribe((data) => {
+            this.todoItems = new ObservableArray<Todo>(data);
+        })
     }
 
     public onAddTodo(todo: Todo) {

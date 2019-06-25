@@ -8,7 +8,7 @@
   <Label (tap)="onTapDetails()" *ngIf="showDetails" [text]="todo.description" class="todo__description" row="1" col="1"> </Label>
 
   <StackLayout row="0" col="3" rowSpan="2" class="todo__favourite">
-    <Label *ngIf="!todo.options.isAddedToImportant" text="&#xf005;" (tap)="onToggleFavourite()" class="far"> </Label>
-    <Label *ngIf="todo.options.isAddedToImportant" text="&#xf005;" (tap)="onToggleFavourite()" class="fas favourite"> </Label>
+    <Label *ngIf="!todo.isAddedToImportant" text="&#xf005;" (tap)="onToggleFavourite()" class="far"> </Label>
+    <Label *ngIf="todo.isAddedToImportant" text="&#xf005;" (tap)="onToggleFavourite()" class="fas favourite"> </Label>
   </StackLayout>
 </GridLayout>

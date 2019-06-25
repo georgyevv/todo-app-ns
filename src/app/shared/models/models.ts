@@ -1,20 +1,15 @@
-export interface BaseObject {
-    id: number;
-    createdOn: Date;
-    createdBy: string;
-    modifiedOn: Date;
-    modifiedBy: string;
-}
-
-export interface Todo extends BaseObject {
-    title: string;
-    description: string;
-    isCompleted: boolean;
-    completedOn: Date;
-    options: TodoOptions;
-}
-
-export interface TodoOptions {
-    isAddedToMyDay: boolean;
-    isAddedToImportant: boolean;
+export class Todo {
+    constructor(
+        public id: string,
+        public createdOn: Date,
+        public createdBy: string,
+        public modifiedOn: Date,
+        public modifiedBy: string,
+        public title: string,
+        public description: string,
+        public isCompleted: boolean,
+        public completedOn: Date,
+        public isAddedToMyDay: boolean,
+        public isAddedToImportant: boolean) {
+        }
 }
