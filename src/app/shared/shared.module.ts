@@ -7,6 +7,8 @@ import { TodoListEntryComponent } from './components/todo-list-entry/todo-list-e
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { DropDownModule } from "nativescript-drop-down/angular";
+import { FriendlyDatePipe } from './pipes/friendly-date.pipe';
 
 @NgModule({
     declarations: [
@@ -15,11 +17,13 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
         TodoDetailsComponent,
         TodoListEntryComponent,
         TodoListComponent,
+        FriendlyDatePipe
     ],
     imports: [
         NativeScriptCommonModule,
         NativeScriptUIListViewModule,
         NativeScriptFormsModule,
+        DropDownModule,
     ],
     exports: [
         DropdownComponent,
@@ -27,6 +31,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
         TodoDetailsComponent,
         TodoListEntryComponent,
         TodoListComponent,
+        FriendlyDatePipe,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

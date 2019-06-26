@@ -71,3 +71,9 @@
   margin-left: 10;
   vertical-align: center;
 }
+
+.dropdown {
+  font-size: 16;
+  font-weight: bold;
+  text-align: left;
+}

@@ -26,12 +26,17 @@
 
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf073;" class="fas option__icon" row="0" col="0"> </Label>
-        <Label [text]="'Add due date'" class="option__text option__separator" row="0" col="1"> </Label>
+        <StackLayout row="0" col="1" orientation="horizontal" verticalAlignment="center">
+          <Label [text]="todo.dueDate | friendlyDate" width="100%" (tap)="onShowDueDatePicker()"></Label>
+        </StackLayout>
       </GridLayout>
 
       <GridLayout columns="40, *" rows="50" class="option">
         <Label text="&#xf2f9;" class="fas option__icon" row="0" col="0"> </Label>
-        <Label [text]="'Repeat'" class="option__text option__separator" row="0" col="1"> </Label>
+        <StackLayout row="0" col="1" orientation="vertical" verticalAlignment="center">
+          <DropDown #ddRepeat class="dropdown" hint="Repeat" [items]="repeatSelections" [ngModel]="todo.repeatType" (selectedIndexChanged)="onRepeatTypeChange($event)"></DropDown>
+          <Label *ngIf="repeatSelectionDetails" [text]="repeatSelectionDetails"></Label>
+        </StackLayout>
       </GridLayout>
     </StackLayout>
 

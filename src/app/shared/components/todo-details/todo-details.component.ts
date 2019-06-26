@@ -5,7 +5,8 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { Todo } from "~/app/shared/models/models";
 import { TodoService } from "~/app/shared/services/todo.service";
-import { TextView } from 'nativescript-angular/forms/value-accessors';
+import { TextView } from "nativescript-angular/forms/value-accessors";
+import { action } from "tns-core-modules/ui/dialogs";
 
 @Component({
     selector: "ns-todo-details",
@@ -14,6 +15,11 @@ import { TextView } from 'nativescript-angular/forms/value-accessors';
     moduleId: module.id
 })
 export class TodoDetailsComponent implements OnInit {
+    public duedateSelections: string[] = ["Today", "Tommorow", "Next week", "Pick a date"];
+    public repeatSelections: string[] = ["Daily", "Weekdays", "Weekly", "Monthly", "Yearly", "Custom"];
+    public repeatSelectionDetails: string;
+    public weekdays: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
     public isBusy: boolean = true;
     public todo: Todo;
 
@@ -23,6 +29,7 @@ export class TodoDetailsComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get("id");
         this.todoService.getTodo(id).subscribe((todo: Todo) => {
             this.todo = todo;
+            this.setDropdownDetails(this.todo.repeatType);
             setTimeout(() => {
                 this.isBusy = false;
             }, 500);
@@ -54,7 +61,40 @@ export class TodoDetailsComponent implements OnInit {
         this.todoService.updateTodo(this.todo);
     }
 
-    public onDescriptionChange(args){
+    public onShowDueDatePicker() {
+        let options = {
+            title: "Due date",
+            message: "Choose due date",
+            cancelButtonText: "Cancel",
+            actions: this.duedateSelections
+        };
+
+        action(options).then(result => {
+            if (result === "Today") {
+                this.todo.dueDate = new Date();
+            } else if (result === "Tommorow") {
+                const currentDate = new Date();
+                currentDate.setDate(currentDate.getDate() + 1);
+                this.todo.dueDate = currentDate;
+            } else if (result === "Next week") {
+                const nextWeekDate = new Date();
+                nextWeekDate.setDate(nextWeekDate.getDate() + ((7 - nextWeekDate.getDay()) % 7));
+                this.todo.dueDate = nextWeekDate;
+            } else {
+                // this.todo.dueDate = nextWeekDate;
+            }
+
+            this.todoService.updateTodo(this.todo);
+        });
+    }
+
+    public onRepeatTypeChange(args) {
+        this.setDropdownDetails(args.newIndex);
+        this.todo.repeatType = args.newIndex;
+        this.todoService.updateTodo(this.todo);
+    }
+
+    public onDescriptionChange(args) {
         let textView = <TextView>args.object;
         this.todo.description = textView.text;
         this.todoService.updateTodo(this.todo);
@@ -63,5 +103,16 @@ export class TodoDetailsComponent implements OnInit {
     public onDelete(): void {
         this.todoService.deleteTodo(this.todo.id);
         this.routerExtensions.back();
+    }
+
+    private setDropdownDetails(repeatSelectionIndex: number) {
+        if (this.repeatSelections[repeatSelectionIndex] == "Weekdays") {
+            this.repeatSelectionDetails = "Weekly";
+        } else if (this.repeatSelections[repeatSelectionIndex] == "Weekly") {
+            const currentDate = new Date();
+            this.repeatSelectionDetails = this.weekdays[currentDate.getDay()];
+        } else {
+            this.repeatSelectionDetails = undefined;
+        }
     }
 }

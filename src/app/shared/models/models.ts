@@ -10,6 +10,17 @@ export class Todo {
         public isCompleted: boolean,
         public completedOn: Date,
         public isAddedToMyDay: boolean,
-        public isAddedToImportant: boolean) {
-        }
+        public isAddedToImportant: boolean,
+        public repeatType: number,
+        public dueDate: Date,
+    ) {}
+}
+
+export enum RepeatType {
+    Daily,
+    Weekdays,
+    Weekly,
+    Monthly,
+    Yearly,
+    Custom
 }
