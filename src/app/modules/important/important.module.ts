@@ -10,7 +10,7 @@ import { ImportantHostComponent } from './important-host/important-host.componen
     imports: [
         NativeScriptCommonModule,
         NativeScriptRouterModule,
-        SharedModule,
+        SharedModule
     ],
     exports: [ImportantHostComponent],
     schemas: [NO_ERRORS_SCHEMA]

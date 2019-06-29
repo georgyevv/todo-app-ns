@@ -1,14 +1,14 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { RadListViewComponent } from "nativescript-ui-listview/angular/listview-directives";
-import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
 import { screen } from "tns-core-modules/platform";
 import { Button } from "tns-core-modules/ui/button";
 import { View } from "tns-core-modules/ui/core/view/view";
 import { AbsoluteLayout } from "tns-core-modules/ui/layouts/absolute-layout";
-import { Todo } from "~/app/shared/models/models";
-import { TodoService } from "../../services/todo.service";
+
+import { Todo } from "../../../core/models/models";
+import { NavigationService } from "../../../core/services/navigation.service";
+import { TodosRepoService } from "../../../core/services/todos-repo.service";
 
 @Component({
     selector: "ns-todo-list",
@@ -22,10 +22,10 @@ export class TodoListComponent implements OnInit {
     @ViewChild("addTodoButton", { static: true }) addTodoButton: ElementRef;
     @ViewChild("myListView", { read: RadListViewComponent, static: false }) myListViewComponent: RadListViewComponent;
 
-    @Input() todoItems: ObservableArray<Todo>;
+    @Input() todoItems: Todo[];
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
-    constructor(private readonly routerExtensions: RouterExtensions, private readonly todoService: TodoService) {}
+    constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosRepoService) {}
 
     public ngOnInit() {
         const button = <Button>this.addTodoButton.nativeElement;
@@ -36,7 +36,7 @@ export class TodoListComponent implements OnInit {
     }
 
     public onItemTap(id: number) {
-        this.routerExtensions.navigate(["/todo-details/", id], { transition: { name: "slideLeft" } });
+        this.navigationService.navigate(["/todo-details/", id], { transition: { name: "slideLeft" } });
     }
 
     public onAddTodoAction() {
@@ -50,7 +50,7 @@ export class TodoListComponent implements OnInit {
 
     public onToggleFavourite(todo: Todo) {
         todo.isAddedToImportant = !todo.isAddedToImportant;
-        this.todoService.updateTodo(todo);
+        this.todoRepoService.updateTodo(todo);
     }
 
     public onToggleComplete(todo: Todo) {
@@ -60,7 +60,7 @@ export class TodoListComponent implements OnInit {
         } else {
             todo.completedOn = undefined;
         }
-        this.todoService.updateTodo(todo);
+        this.todoRepoService.updateTodo(todo);
     }
 
     public onSwipeCellStarted(args: ListViewEventData) {
@@ -80,7 +80,7 @@ export class TodoListComponent implements OnInit {
 
     public onRightSwipeClick(args) {
         const todo: Todo = <Todo>args.object.bindingContext;
-        this.todoService.deleteTodo(todo.id);
+        this.todoRepoService.deleteTodo(todo.id);
         this.myListViewComponent.listView.notifySwipeToExecuteFinished();
     }
 }

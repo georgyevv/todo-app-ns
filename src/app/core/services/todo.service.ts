@@ -14,7 +14,7 @@ export class TodoService {
     constructor(private ngZone: NgZone) {}
 
     public get getTodos$(): Observable<Todo[]> {
-        console.log("getTodos");
+        // //console.log("getTodos");
 
         const observable = Observable.create(subscriber => {
             this.todosRef.onSnapshot((snapshot: firestore.QuerySnapshot) => {
@@ -34,7 +34,7 @@ export class TodoService {
     }
 
     public get getMyDayTodos$(): Observable<Todo[]> {
-        console.log("getMyDayTodos");
+        // //console.log("getMyDayTodos");
 
         const observable = Observable.create(subscriber => {
             this.todosRef.where("isAddedToMyDay", "==", true).onSnapshot((snapshot: firestore.QuerySnapshot) => {
@@ -54,7 +54,7 @@ export class TodoService {
     }
 
     public get importantTodos$(): Observable<Todo[]> {
-        console.log("getImportantTodos");
+        // //console.log("getImportantTodos");
 
         const observable = Observable.create(subscriber => {
             this.todosRef.where("isAddedToImportant", "==", true).onSnapshot((snapshot: firestore.QuerySnapshot) => {
@@ -74,7 +74,8 @@ export class TodoService {
     }
 
     public getTodo(id: string): Observable<Todo> {
-        console.log("getTodo");
+        // //console.log("getTodo");
+
         const observable = Observable.create(subscriber => {
             this.todosRef.doc(id).onSnapshot((docSnap: firestore.DocumentSnapshot) => {
                 this.ngZone.run(() => {
@@ -93,27 +94,28 @@ export class TodoService {
     }
 
     public addTodo(todo: Todo) {
-        console.log("addTodo");
+        // //console.log("addTodo");
+
         this.todosRef.add(todo);
     }
 
     public updateTodo(todo: Todo): void {
-        console.log("updateTodo");
+        //console.log("updateTodo");
         this.todosRef
             .doc(todo.id)
             .update(todo)
             .then(() => {
-                console.log("document succ updated");
+                //console.log("document succ updated");
             });
     }
 
     public deleteTodo(id: string) {
-        console.log("deleteTodo");
+        //console.log("deleteTodo");
         this.todosRef
             .doc(id)
             .delete()
             .then(() => {
-                console.log("document succ deleted");
+                //console.log("document succ deleted");
             });
     }
 }

@@ -1,0 +1,12 @@
+<GridLayout rows="auto, *">
+  <StackLayout row="0">
+    <Label text="Welcome to TODO" class="header"></Label>
+  </StackLayout>
+
+  <StackLayout row="1">
+    <TabView androidTabsPosition="bottom" androidSelectedTabHighlightColor="blue" selectedTabTextColor="blue">
+      <page-router-outlet *tabItem="{ title: 'Login' }" name="loginTab" actionBarVisibility="never"></page-router-outlet>
+      <page-router-outlet *tabItem="{ title: 'Register' }" name="registerTab" actionBarVisibility="never"></page-router-outlet>
+    </TabView>
+  </StackLayout>
+</GridLayout>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
-import { Todo } from "~/app/shared/models/models";
-import { TodoService } from "~/app/shared/services/todo.service";
+
+import { Todo } from "~/app/core/models/models";
+import { TodosRepoService } from '~/app/core/services/todos-repo.service';
+import { Store } from "~/app/core/state/app-store";
 
 @Component({
     selector: "ns-tasks-host",
@@ -12,19 +13,17 @@ import { TodoService } from "~/app/shared/services/todo.service";
     moduleId: module.id
 })
 export class TasksHostComponent implements OnInit {
-    public todoItems: ObservableArray<Todo>;
+    public todos$ = this.store.select<Todo[]>("tasks");
 
-    constructor(public readonly todoService: TodoService) {}
+    constructor(private store: Store, private todoRepoService: TodosRepoService) {}
 
     public ngOnInit() {
-        console.log("TasksHostComponent init");
-        this.todoService.getTodos$.subscribe(data => {
-            this.todoItems = new ObservableArray<Todo>(data);
-        });
+        //console.log("TasksHostComponent init");
+        this.todoRepoService.fetchTodosList();
     }
 
     public onAddTodo(todo: Todo) {
-        this.todoService.addTodo(todo);
+        this.todoRepoService.addTodo(todo);
     }
 
     public onDrawerButtonTap(): void {

@@ -10,7 +10,9 @@ import { ImportantModule } from './modules/important/important.module';
 import { PlannedModule } from './modules/planned/planned.module';
 import { SearchModule } from './modules/search/search.module';
 import { TasksModule } from './modules/tasks/tasks.module';
-import { TodoService } from './shared/services/todo.service';
+import { CoreModule } from './core/core.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -23,7 +25,10 @@ import { TodoService } from './shared/services/todo.service';
         NativeScriptModule,
         NativeScriptUISideDrawerModule,
         NativeScriptHttpClientModule,
+        SharedModule,
         AppRoutingModule,
+        AuthModule,
+        CoreModule,
         MyDayModule,
         ImportantModule,
         PlannedModule,
@@ -32,9 +37,6 @@ import { TodoService } from './shared/services/todo.service';
     ],
     declarations: [
         AppComponent
-    ],
-    providers: [
-        TodoService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

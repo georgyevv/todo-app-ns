@@ -2,8 +2,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-import { SharedModule } from "~/app/shared/shared.module";
 import { MyDayHostComponent } from "./my-day-host/my-day-host.component";
+import { SharedModule } from '~/app/shared/shared.module';
 
 @NgModule({
     declarations: [

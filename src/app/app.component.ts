@@ -1,8 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { RouterExtensions } from "nativescript-angular/router";
+import * as trace from "tns-core-modules/trace";
 const firebase = require("nativescript-plugin-firebase");
+
+import { NavigationService } from "./core/services/navigation.service";
+import { AuthService } from "./modules/auth/services/auth.service";
+import { Store } from "./core/state/app-store";
 
 @Component({
     moduleId: module.id,
@@ -10,6 +14,8 @@ const firebase = require("nativescript-plugin-firebase");
     templateUrl: "app.component.html"
 })
 export class AppComponent implements OnInit {
+    public showSpinner$ = this.store.select<boolean>("showSpinner");
+    public currentUser$ = this.store.select<any>("currentUser");
     public expandUserOptions: boolean = false;
 
     private _sideDrawerTransition: DrawerTransitionBase;
@@ -18,33 +24,41 @@ export class AppComponent implements OnInit {
         return this._sideDrawerTransition;
     }
 
-    constructor(private readonly routerExtensions: RouterExtensions) {}
+    constructor(private readonly store: Store, private readonly navigationService: NavigationService, private readonly authService: AuthService) {}
 
-    public ngOnInit(): void {
+    public async ngOnInit(): Promise<void> {
+        trace.write("Some sample debug log", trace.categories.Debug);
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
-        firebase
-            .init({
-                // Optionally pass in properties for database, authentication and cloud messaging,
-                // see their respective docs.
-            })
-            .then(
-                () => {
-                    console.log("firebase.init done");
-                },
-                error => {
-                    console.log(`firebase.init error: ${error}`);
+        await firebase.init({
+            persist: false,
+            onAuthStateChanged: (data: any) => {
+                // //console.log(data);
+                if (data.loggedIn) {
+                    //console.log("user's email address: " + (data.user.email ? data.user.email : "N/A"));
                 }
-            );
+            }
+        });
+        //console.log("firebase.init done");
     }
 
     public redirectAndCloseDrawer(url: string) {
-        const sideDrawer = <RadSideDrawer>app.getRootView();
-        sideDrawer.closeDrawer();
-        this.routerExtensions.navigate([url], { transition: { name: "slideLeft" }, clearHistory: true });
+        this.closeDrawer();
+        this.navigationService.navigate([url], { transition: { name: "slideLeft" }, clearHistory: true });
     }
 
     public toggleUserOptions() {
         this.expandUserOptions = !this.expandUserOptions;
+    }
+
+    public async onSignOut() {
+        await this.authService.signOut();
+        this.closeDrawer();
+        this.navigationService.navigate(["/auth"], { clearHistory: true });
+    }
+
+    private closeDrawer() {
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.closeDrawer();
     }
 }

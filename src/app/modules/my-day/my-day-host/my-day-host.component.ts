@@ -1,30 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
-import * as app from 'tns-core-modules/application';
-import { Todo } from '~/app/shared/models/models';
-import { TodoService } from '~/app/shared/services/todo.service';
-import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
+import { Component, OnInit } from "@angular/core";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import * as app from "tns-core-modules/application";
+
+import { Todo } from "~/app/core/models/models";
+import { TodosRepoService } from '~/app/core/services/todos-repo.service';
+import { Store } from "~/app/core/state/app-store";
 
 @Component({
-    selector: 'ns-my-day-host',
-    templateUrl: './my-day-host.component.html',
-    styleUrls: ['./my-day-host.component.css'],
+    selector: "ns-my-day-host",
+    templateUrl: "./my-day-host.component.html",
+    styleUrls: ["./my-day-host.component.css"],
     moduleId: module.id
 })
 export class MyDayHostComponent implements OnInit {
-    public todoItems: ObservableArray<Todo>;
+    public todos$ = this.store.select<Todo[]>("myDayTodos");
 
-    constructor(public readonly todoService: TodoService) {}
+    constructor(private store: Store, private todoRepoService: TodosRepoService) {}
 
     public ngOnInit() {
-        console.log("MyDayHostComponent init");
-        this.todoService.getMyDayTodos$.subscribe((data) => {
-            this.todoItems = new ObservableArray<Todo>(data);
-        })
+        //console.log("MyDayHostComponent init");
+        this.todoRepoService.fetchMyDayTodosList();
     }
 
     public onAddTodo(todo: Todo) {
-        this.todoService.addTodo(todo);
+        this.todoRepoService.addTodo(todo);
     }
 
     public onDrawerButtonTap(): void {

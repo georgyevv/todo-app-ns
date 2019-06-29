@@ -24,3 +24,18 @@ export enum RepeatType {
     Yearly,
     Custom
 }
+
+export class LoginUser {
+    constructor(
+        public email: string,
+        public password: string
+    ) {}
+}
+
+export class RegisterUser {
+    constructor(
+        public email: string,
+        public password: string,
+        public confirmPassword: string
+    ) {}
+}

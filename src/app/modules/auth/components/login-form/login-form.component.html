@@ -1,0 +1,16 @@
+<StackLayout>
+  <RadDataForm #loginForm tkExampleTitle tkToggleNavButton validationMode="OnLostFocus" commitMode="Manual" [source]="user">
+    <TKEntityProperty tkDataFormProperty name="email" displayName="Email" index="0">
+      <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Email can't be empty."></TKNonEmptyValidator>
+      <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
+      <TKEmailValidator tkEntityPropertyValidators errorMessage="Invalid email address"></TKEmailValidator>
+    </TKEntityProperty>
+    <TKEntityProperty tkDataFormProperty name="password" displayName="Password" index="1">
+      <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+      <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Password can't be empty."></TKNonEmptyValidator>
+      <TKMinimumLengthValidator tkEntityPropertyValidators errorMessage="Password must be at least 6 characters long." length="6"></TKMinimumLengthValidator>
+    </TKEntityProperty>
+  </RadDataForm>
+
+  <Button text="LOGIN" class="login__button" (tap)="onLogin()"></Button>
+</StackLayout>

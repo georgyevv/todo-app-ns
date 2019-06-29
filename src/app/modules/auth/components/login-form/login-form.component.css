@@ -1,0 +1,6 @@
+/* Add mobile styles for the component here.  */
+.login__button {
+    width: 200;
+    text-align: center;
+    margin-top: 20;
+}

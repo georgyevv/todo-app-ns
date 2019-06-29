@@ -1,0 +1,18 @@
+<StackLayout>
+  <RadDataForm #registerForm tkExampleTitle tkToggleNavButton validationMode="OnLostFocus" commitMode="Manual" [source]="user" (propertyValidate)="onPropertyValidate($event)">
+    <TKEntityProperty tkDataFormProperty name="email" displayName="Email" index="0">
+      <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
+      <TKEmailValidator tkEntityPropertyValidators errorMessage="Invalid email address"></TKEmailValidator>
+    </TKEntityProperty>
+    <TKEntityProperty tkDataFormProperty name="password" displayName="Password" index="1">
+      <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+      <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Password can't be empty."></TKNonEmptyValidator>
+      <TKMinimumLengthValidator tkEntityPropertyValidators errorMessage="Password must be at least 6 characters long." length="6"></TKMinimumLengthValidator>
+    </TKEntityProperty>
+    <TKEntityProperty tkDataFormProperty name="confirmPassword" displayName="Confirm Password" index="2">
+      <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+    </TKEntityProperty>
+  </RadDataForm>
+
+  <Button text="REGISTER" class="register__button" (tap)="onRegister()"></Button>
+</StackLayout>

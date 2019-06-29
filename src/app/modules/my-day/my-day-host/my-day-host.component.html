@@ -4,4 +4,4 @@
   <Label class="action-bar-title" text="My day"></Label>
 </ActionBar>
 
-<ns-todo-list [todoItems]="todoItems" (addTodo)="onAddTodo($event)"></ns-todo-list>
+<ns-todo-list [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
