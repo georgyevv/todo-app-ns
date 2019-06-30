@@ -15,6 +15,11 @@
   text-align: center;
   vertical-align: center;
   font-size: 26;
+  background-color: white;
+  z-index: 0
+}
+.add-todo__send--valid {
+  color: blue;
 }
 
 .options {

@@ -1,7 +1,7 @@
 <GridLayout class="add-todo" width="100%" height="120" rows="50,70" columns="50,*,50">
   <Label class="far add-todo__complete" row="0" col="0" text="&#xf111;"></Label>
-  <TextField id="todo-title" class="add-todo__input" row="0" col="1" hint="Add a todo" [(ngModel)]="todo.title"></TextField>
-  <Label (tap)="onAddTodo()" class="fas add-todo__send" row="0" col="2" text="&#xf360;"> </Label>
+  <TextField id="todo-title" class="add-todo__input" row="0" col="1" hint="Add a todo" [(ngModel)]="todo.title" #title="ngModel" required></TextField>
+  <Button [isEnabled]="title.valid" (tap)="onAddTodo()" [ngClass]="{ 'add-todo__send--valid': title.valid }" text="&#xf360;" class="fas add-todo__send" row="0" col="2"> </Button>
 
   <ScrollView row="1" col="0" colSpan="3" orientation="horizontal">
     <StackLayout orientation="horizontal" padding="5">
