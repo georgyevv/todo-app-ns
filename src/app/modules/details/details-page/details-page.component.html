@@ -1,6 +1,7 @@
 <ActionBar class="action-bar">
   <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
   <Label class="action-bar-title" text=""></Label>
+  <ActionItem (tap)="onDelete()" text="Delete" ios.systemIcon="16" ios.position="right" android.position="popup"></ActionItem>
 </ActionBar>
 
 <ng-container *ngIf="todo$ | async as Todo; else spinner">

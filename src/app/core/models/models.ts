@@ -13,6 +13,8 @@ export class Todo {
         public isAddedToImportant: boolean,
         public repeatType: number,
         public dueDate: Date,
+        public priority: number,
+        public parent: Todo,
     ) {}
 }
 

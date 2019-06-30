@@ -1,15 +1,11 @@
 .add-todo {
-  border-top-color: black;
+  border-top-color: coral;
   border-top-width: 1;
   background-color: white;
+  padding: 10;
 }
 .add-todo__input {
   width: 100%;
-}
-.add-todo__complete {
-  text-align: center;
-  vertical-align: center;
-  font-size: 26;
 }
 .add-todo__send {
   text-align: center;
@@ -19,34 +15,36 @@
   z-index: 0
 }
 .add-todo__send--valid {
-  color: blue;
+  color: coral;
 }
 
 .options {
-  border-radius: 100%;
-  background-color: lightgray;
-  padding: 5 10;
-  margin: 5 5 5 5;
-  height: 40;
+  margin-top: 20;
 }
-.options__icon {
-  text-align: center;
+.option__icon {
+  font-size: 24;
+  margin-right: 30;
+}
+.option__icon--active {
+  color: coral;
+}
+
+.selected-option {
+  width: auto;
+  background-color: coral;
   vertical-align: center;
+  text-align: center;
+  padding: 5;
   margin-right: 5;
+  border-radius: 5;
 }
-.options__icon--blue {
-  color: blue;
-}
-.options__icon--dark-blue {
-  color: darkblue;
-}
-.options__icon--green {
-  color: green;
-}
-.options__icon--red {
-  color: red;
-}
-.options__text {
-  text-align: center;
+.selected-option__icon {
+  font-size: 16;
+  color: white;
+  margin-right: 5;
   vertical-align: center;
+}
+.selected-option__text {
+  font-size: 16;
+  color: white;
 }

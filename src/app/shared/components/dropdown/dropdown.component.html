@@ -1,9 +1,0 @@
-<AbsoluteLayout>
-  <StackLayout orientation="horizontal" (tap)="onTap()">
-    <Label [text]="text ? text : placeholder"></Label>
-    <Label text="&#xf107;" class="fas"></Label>
-  </StackLayout>
-  <StackLayout *ngIf="showDropdownContent">
-    <Label *ngFor="let item of items" [text]="item"></Label>
-  </StackLayout>
-</AbsoluteLayout>

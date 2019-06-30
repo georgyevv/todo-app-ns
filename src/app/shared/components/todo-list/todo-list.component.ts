@@ -31,8 +31,8 @@ export class TodoListComponent implements OnInit {
         const button = <Button>this.addTodoButton.nativeElement;
         // This is not okay must be changes (150) is for the top navigation which is included in the heightDIP i guess
         AbsoluteLayout.setTop(button, screen.mainScreen.heightDIPs - Number(button.height) - 150);
-        // This is not okay must be changes (40) wtf is 40 ? margin righ
-        AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 40);
+        // This is not okay must be changes (20) wtf is 20 ? margin righ - MAGIN NUMBER
+        AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 20);
     }
 
     public onItemTap(id: number) {

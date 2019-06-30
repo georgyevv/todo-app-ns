@@ -16,15 +16,15 @@
 
     <GridLayout flexGrow="1" rows="auto, auto, auto, auto, auto, auto" columns="60, *" class="options">
       <Label text="&#xf133;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="0" col="0"></Label>
-      <StackLayout row="0" col="1" class="m-b-25">
+      <StackLayout row="0" col="1" class="m-b-25" (tap)="onOpenDuedateModal()">
         <Label text="Due date" class="font-weight-bold"></Label>
-        <Label text="No due date"></Label>
+        <Label [text]="todo.dueDate ? 'Due ' + (todo.dueDate | friendlyDate) : 'No due date'"></Label>
       </StackLayout>
 
       <Label text="&#xf024;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="1" col="0"></Label>
-      <StackLayout row="1" col="1" class="m-b-25">
+      <StackLayout row="1" col="1" class="m-b-25" (tap)="onOpenPrioritiesModal()">
         <Label text="Priority" class="font-weight-bold"></Label>
-        <Label text="Priority 4"></Label>
+        <Label [text]="'Priority ' + todo.priority"></Label>
       </StackLayout>
 
       <Label text="&#xf02c;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="2" col="0"></Label>
@@ -35,8 +35,8 @@
 
       <Label text="&#xf550;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="3" col="0"></Label>
       <StackLayout row="3" col="1" class="m-b-25">
-        <Label text="Parent" class="font-weight-bold"></Label>
-        <Label text="No parent"></Label>
+        <Label text="Parent" class="font-weight-bold" (tap)="onOpenParentModal()"></Label>
+        <Label [text]="todo.parent ? todo.parent.title : 'No parent'"></Label>
       </StackLayout>
 
       <Label text="&#xf075;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="4" col="0"></Label>

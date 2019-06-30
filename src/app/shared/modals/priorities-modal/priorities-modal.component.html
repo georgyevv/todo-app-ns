@@ -1,0 +1,18 @@
+<StackLayout width="100%">
+  <Label text="Priority" class="h3" marginLeft="20" marginTop="10" marginBottom="20"></Label>
+  <GridLayout rows="40, 40, 40, 40" columns="30, *" marginLeft="20" marginRight="20">
+    <Label text="&#xf024;" class="fas priority--one" row="0" col="0"></Label>
+    <Label text="Priority 1" class="font-weight-bold" row="0" col="1" (tap)="onSelectPriority(1)"></Label>
+
+    <Label text="&#xf024;" class="fas priority--two" row="1" col="0"></Label>
+    <Label text="Priority 2" class="font-weight-bold" row="1" col="1" (tap)="onSelectPriority(2)"></Label>
+
+    <Label text="&#xf024;" class="fas priority--three" row="2" col="0"></Label>
+    <Label text="Priority 3" class="font-weight-bold" row="2" col="1" (tap)="onSelectPriority(3)"></Label>
+
+    <Label text="&#xf024;" class="fas priority--four" row="3" col="0"></Label>
+    <Label text="Priority 4" class="font-weight-bold" row="3" col="1" (tap)="onSelectPriority(4)"></Label>
+  </GridLayout>
+  <StackLayout class="hr-light"></StackLayout>
+  <Button text="CLOSE" class="close-button" (tap)="onCancel()"></Button>
+</StackLayout>

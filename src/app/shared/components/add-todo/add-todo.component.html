@@ -1,28 +1,29 @@
-<GridLayout class="add-todo" width="100%" height="120" rows="50,70" columns="50,*,50">
-  <Label class="far add-todo__complete" row="0" col="0" text="&#xf111;"></Label>
-  <TextField id="todo-title" class="add-todo__input" row="0" col="1" hint="Add a todo" [(ngModel)]="todo.title" #title="ngModel" required></TextField>
-  <Button [isEnabled]="title.valid" (tap)="onAddTodo()" [ngClass]="{ 'add-todo__send--valid': title.valid }" text="&#xf360;" class="fas add-todo__send" row="0" col="2"> </Button>
-
-  <ScrollView row="1" col="0" colSpan="3" orientation="horizontal">
-    <StackLayout orientation="horizontal" padding="5">
-      <StackLayout width="80" class="options" orientation="horizontal">
-        <Label text="&#xf0ae;" class="fas options__icon options__icon--blue"></Label>
-        <Label text="Tasks" class="options__text"></Label>
-      </StackLayout>
-
-      <StackLayout width="120" class="options" orientation="horizontal">
-        <Label text="&#xf073;" class="fas options__icon options__icon--dark-blue"></Label>
-      </StackLayout>
-
-      <StackLayout width="110" class="options" orientation="horizontal">
-        <Label text="&#xf017;" class="far options__icon options__icon--green"></Label>
-        <Label text="Remind me" class="options__text"></Label>
-      </StackLayout>
-
-      <StackLayout width="85" class="options" orientation="horizontal">
-        <Label text="&#xf2f9;" class="fas options__icon options__icon--red"></Label>
-        <Label text="Repeat" class="options__text"></Label>
-      </StackLayout>
+<GridLayout class="add-todo" width="100%" height="120" rows="50,70" columns="*,50">
+  <StackLayout row="0" col="0" orientation="horizontal">
+    <StackLayout *ngIf="todo.dueDate" class="selected-option" (tap)="onRemoveDueDate()" orientation="horizontal">
+      <Label text="&#xf133;" class="far selected-option__icon"></Label>
+      <Label [text]="todo.dueDate | friendlyDate" class="selected-option__text"></Label>
     </StackLayout>
-  </ScrollView>
+    <StackLayout *ngIf="todo.priority" class="selected-option" (tap)="onRemovePriority()" orientation="horizontal">
+      <Label text="&#xf024;" class="far selected-option__icon"></Label>
+      <Label [text]="todo.priority" class="selected-option__text"></Label>
+    </StackLayout>
+
+    <TextField id="todo-title" class="add-todo__input" hint="e.g. lunch on Monday at noon" [(ngModel)]="todo.title" #title="ngModel" required></TextField>
+  </StackLayout>
+
+  <Button [isEnabled]="title.valid"
+          (tap)="onAddTodo()"
+          [ngClass]="{ 'add-todo__send--valid': title.valid }"
+          text="&#xf360;"
+          class="fas add-todo__send" row="0" col="2"> </Button>
+
+  <FlexboxLayout justifyContent="space-around" row="1" col="0" colSpan="2" class="options">
+    <Label text="&#xf133;" class="far option__icon" [ngClass]="{'option__icon--active': todo.dueDate}" (tap)="onOpenDuedateModal()"></Label>
+    <Label text="&#xf024;" class="far option__icon" [ngClass]="{'option__icon--active': todo.priority}" (tap)="onOpenPrioritiesModal()"></Label>
+    <Label text="&#xf02c;" class="fas option__icon"></Label>
+    <Label text="&#xf550;" class="fas option__icon"></Label>
+    <Label text="&#xf075;" class="far option__icon"></Label>
+    <Label text="&#xf017;" class="far option__icon"></Label>
+  </FlexboxLayout>
 </GridLayout>

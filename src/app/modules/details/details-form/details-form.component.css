@@ -39,8 +39,8 @@
 .remove-details__icon {
     text-align: center;
     vertical-align: center;
-    font-size: 16;
-    color: rgb(110, 110, 110);
+    font-size: 20;
+    color: red;
 }
 .remove-details__text {
     font-size: 14;

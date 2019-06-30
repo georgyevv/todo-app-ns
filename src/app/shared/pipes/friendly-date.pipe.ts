@@ -16,13 +16,17 @@ export class FriendlyDatePipe implements PipeTransform {
         if (type == "due") {
             const currentDate = new Date();
             if (date.getFullYear() === currentDate.getFullYear() && date.getMonth() === currentDate.getMonth() && date.getDate() === currentDate.getDate()) {
-                return "Due Today";
+                return "Today";
             }
             if (date.getFullYear() === currentDate.getFullYear() && date.getMonth() === currentDate.getMonth() && date.getDate() === currentDate.getDate() + 1) {
-                return "Due Tommorow";
+                return "Tommorow";
             }
 
-            return `Due ${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}`;
+            return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}`;
+        }
+
+        if (type == "dayOfWeek") {
+            return `${this.weekdays[date.getDay()].substr(0, 3)}`;
         }
 
         return date;

@@ -1,0 +1,22 @@
+/* Add mobile styles for the component here.  */
+.close-button {
+    z-index: 0;
+    color: coral;
+    background-color: white;
+}
+
+.priority--one {
+    color: red;
+}
+
+.priority--two {
+    color: orange;
+}
+
+.priority--three {
+    color: blue;
+}
+
+.priority--four {
+    color: gray;
+}

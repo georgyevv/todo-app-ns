@@ -3,9 +3,8 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 
 import { Todo } from "~/app/core/models/models";
-import { TodosRepoService } from '~/app/core/services/todos-repo.service';
+import { TodosRepoService } from "~/app/core/services/todos-repo.service";
 import { Store } from "~/app/core/state/app-store";
-import { tap } from 'rxjs/operators';
 
 @Component({
     selector: "ns-today-host",

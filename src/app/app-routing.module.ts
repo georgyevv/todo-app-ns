@@ -4,12 +4,12 @@ import { Routes } from "@angular/router";
 
 import { TodayHostComponent } from "./modules/today/today-host/today-host.component";
 import { AuthGuard } from "./modules/auth/services/auth.guard";
-import { DetailsPageComponent } from './modules/details/details-page/details-page.component';
+import { DetailsPageComponent } from "./modules/details/details-page/details-page.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/today", pathMatch: "full" },
     { path: "today", component: TodayHostComponent },
-    { path: "todo-details/:id", component: DetailsPageComponent }
+    { path: "todo-details/:id", component: DetailsPageComponent },
 ];
 
 @NgModule({

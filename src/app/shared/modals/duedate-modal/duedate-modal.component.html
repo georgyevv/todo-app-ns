@@ -1,0 +1,21 @@
+<StackLayout width="100%">
+  <Label text="Due date" class="h3" marginLeft="20" marginTop="10" marginBottom="20"></Label>
+  <GridLayout rows="40, 40, 40, 40" columns="30, *, auto" marginLeft="20" marginRight="20">
+    <Label text="&#xf133;" class="far" row="0" col="0"></Label>
+    <Label text="Today" class="font-weight-bold" row="0" col="1" (tap)="onToday()"></Label>
+    <Label [text]="todayDate | friendlyDate:'dayOfWeek'" row="0" col="3"></Label>
+
+    <Label text="&#xf185;" class="fas" row="1" col="0"></Label>
+    <Label text="Tommorow" class="font-weight-bold" row="1" col="1" (tap)="onTomorrow()"></Label>
+    <Label [text]="tommorowDate | friendlyDate:'dayOfWeek'" row="1" col="3"></Label>
+
+    <Label text="&#xf073;" class="far" row="2" col="0"></Label>
+    <Label text="Next week" class="font-weight-bold" row="2" col="1" (tap)="onNextWeek()"></Label>
+    <Label [text]="firstDayOfNextWeekDate | friendlyDate:'dayOfWeek'" row="2" col="3"></Label>
+
+    <Label text="&#xf273;" class="far" row="3" col="0"></Label>
+    <Label text="No date" class="font-weight-bold" row="3" col="1" (tap)="onNoDate()"></Label>
+  </GridLayout>
+  <StackLayout class="hr-light"></StackLayout>
+  <Button text="CLOSE" class="close-button" (tap)="onCancel()"></Button>
+</StackLayout>
