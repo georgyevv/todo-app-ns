@@ -12,12 +12,12 @@
   visibility: hidden;
 }
 
-.remove-my-day {
+.remove-today {
   vertical-align: center;
   background-color: blue;
   height: 100%;
 }
-.remove-my-day__action {
+.remove-today__action {
   text-align: center;
   width: 100;
   text-decoration: line-through;

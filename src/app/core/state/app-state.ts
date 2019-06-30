@@ -1,13 +1,11 @@
 import { Todo } from "../models/models";
 import * as firebase from "nativescript-plugin-firebase";
 
-export type StateKey = "myDayTodos" | "importantTodos" | "plannedTodos" | "tasks" | "selectedTodo" | "currentUser" | "showSpinner";
+export type StateKey = "todayTodos" | "allTodos" | "selectedTodo" | "currentUser" | "showSpinner";
 
 export interface State {
-    myDayTodos: Todo[];
-    importantTodos: Todo[];
-    plannedTodos: Todo[];
-    tasks: Todo[];
+    todayTodos: Todo[];
+    allTodos: Todo[];
     selectedTodo: Todo;
     currentUser: firebase.User;
     showSpinner: boolean;
@@ -15,10 +13,8 @@ export interface State {
 }
 
 export const INITIAL_STATE: State = {
-    myDayTodos: [],
-    importantTodos: [],
-    plannedTodos: [],
-    tasks: [],
+    todayTodos: [],
+    allTodos: [],
     selectedTodo: undefined,
     currentUser: undefined,
     showSpinner: false

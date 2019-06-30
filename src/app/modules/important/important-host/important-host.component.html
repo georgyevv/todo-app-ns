@@ -1,7 +1,0 @@
-<ActionBar class="action-bar">
-  <NavigationButton ios:visibility="collapsed" icon="res://menu_black" (tap)="onDrawerButtonTap()"></NavigationButton>
-  <ActionItem icon="res://navigation/menu_black" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left"> </ActionItem>
-  <Label class="action-bar-title" text="Important"></Label>
-</ActionBar>
-
-<ns-todo-list [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>

@@ -1,67 +1,73 @@
 <ActionBar class="action-bar">
-  <NavigationButton ios:visibility="collapsed" icon="res://menu_black" (tap)="onDrawerButtonTap()"></NavigationButton>
-  <ActionItem icon="res://navigation/menu_black" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left"> </ActionItem>
-  <Label class="action-bar-title" text="My day"></Label>
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
+  <Label class="action-bar-title" text=""></Label>
 </ActionBar>
 
-<FlexboxLayout flexDirection="column" *ngIf="!isBusy; else spinner">
-  <StackLayout flexGrow="1" orientation="vertical">
-    <StackLayout class="option option__main">
-      <ns-todo-list-entry [todo]="todo" (toggleComplete)="onToggleComplete()" (toggleFavourite)="onToggleFavourite()"></ns-todo-list-entry>
+<AbsoluteLayout *ngIf="!isBusy; else spinner">
+  <Button #saveButton (tap)="onSave()" text="&#xf1d8;" class="fas save-button" width="60" height="60"></Button>
+
+  <FlexboxLayout flexDirection="column" width="100%" height="100%">
+    <StackLayout class="header">
+      <StackLayout class="header__item">
+        <Label text="Task" class="header__title"></Label>
+        <TextField [(ngModel)]="todo.title" class="header__text"></TextField>
+      </StackLayout>
+
+      <StackLayout class="header__item">
+        <Label text="Project" class="header__title"></Label>
+        <Label text="Inbox"></Label>
+      </StackLayout>
     </StackLayout>
 
-    <StackLayout class="container">
-      <GridLayout columns="40, *, 40" rows="50" [ngClass]="{ selected: todo.isAddedToMyDay }" class="option" (tap)="onToggleAddToMyDay()">
-        <Label text="&#xf185;" class="far option__icon" row="0" col="0"> </Label>
-        <Label [text]="todo.isAddedToMyDay ? 'Added to My Day' : 'Add to My Day'" class="option__text" row="0" col="1"> </Label>
-        <Label *ngIf="todo.isAddedToMyDay" text="&#xf00d;" class="fas option__remove" row="0" col="2"> </Label>
-      </GridLayout>
-    </StackLayout>
+    <GridLayout flexGrow="1" rows="60, 60, 60, 60, 60, 60" columns="50, *" class="options">
+      <Label text="icon" row="0" col="0"></Label>
+      <StackLayout row="0" col="1">
+        <Label text="Due date"></Label>
+        <Label text="No due date"></Label>
+      </StackLayout>
 
-    <StackLayout class="container">
-      <GridLayout columns="40, *" rows="50" class="option">
-        <Label text="&#xf017;" class="far option__icon" row="0" col="0"> </Label>
-        <Label [text]="'Remind me'" class="option__text option__separator" row="0" col="1"> </Label>
-      </GridLayout>
+      <Label text="icon" row="1" col="0"></Label>
+      <StackLayout row="1" col="1">
+        <Label text="Priority"></Label>
+        <Label text="Priority 4"></Label>
+      </StackLayout>
 
-      <GridLayout columns="40, *" rows="50" class="option">
-        <Label text="&#xf073;" class="fas option__icon" row="0" col="0"> </Label>
-        <StackLayout row="0" col="1" orientation="horizontal" verticalAlignment="center">
-          <Label [text]="todo.dueDate | friendlyDate" width="100%" (tap)="onShowDueDatePicker()"></Label>
-        </StackLayout>
-      </GridLayout>
+      <Label text="icon" row="2" col="0"></Label>
+      <StackLayout row="2" col="1">
+        <Label text="Labels"></Label>
+        <Label text="No label"></Label>
+      </StackLayout>
 
-      <GridLayout columns="40, *" rows="50" class="option">
-        <Label text="&#xf2f9;" class="fas option__icon" row="0" col="0"> </Label>
-        <StackLayout row="0" col="1" orientation="vertical" verticalAlignment="center">
-          <DropDown #ddRepeat class="dropdown" hint="Repeat" [items]="repeatSelections" [ngModel]="todo.repeatType" (selectedIndexChanged)="onRepeatTypeChange($event)"></DropDown>
-          <Label *ngIf="repeatSelectionDetails" [text]="repeatSelectionDetails"></Label>
-        </StackLayout>
-      </GridLayout>
-    </StackLayout>
+      <Label text="icon" row="3" col="0"></Label>
+      <StackLayout row="3" col="1">
+        <Label text="Parent"></Label>
+        <Label text="No parent"></Label>
+      </StackLayout>
 
-    <StackLayout class="container">
-      <GridLayout columns="40, *" rows="50" class="option">
-        <Label text="&#xf0c6;" class="fas option__icon" row="0" col="0"> </Label>
-        <Label [text]="'Add a file'" class="option__text" row="0" col="1"> </Label>
-      </GridLayout>
-    </StackLayout>
+      <Label text="icon" row="4" col="0"></Label>
+      <StackLayout row="4" col="1">
+        <Label text="Comments"></Label>
+        <Label text="No comments"></Label>
+      </StackLayout>
 
-    <StackLayout class="container">
-      <TextView hint="Add a note" class="option__note" [ngModel]="todo.description" (blur)="onDescriptionChange($event)"> </TextView>
-    </StackLayout>
-  </StackLayout>
-
-  <StackLayout alignSelf="flex-end" class="remove-details">
-    <GridLayout columns="*, 40" rows="*">
-      <Label [text]="'Updated a few moments ago'" class="remove-details__text" row="0" col="0"> </Label>
-      <Label (tap)="onDelete()" text="&#xf2ed;" class="far remove-details__icon" row="0" col="1"> </Label>
+      <Label text="icon" row="5" col="0"></Label>
+      <StackLayout row="5" col="1">
+        <Label text="Reminders"></Label>
+        <Label text="No reminders"></Label>
+      </StackLayout>
     </GridLayout>
-  </StackLayout>
-</FlexboxLayout>
+
+    <StackLayout alignSelf="flex-end" class="remove-details">
+      <GridLayout columns="*, 40" rows="*">
+        <Label [text]="'Updated a few moments ago'" class="remove-details__text" row="0" col="0"> </Label>
+        <Label (tap)="onDelete()" text="&#xf2ed;" class="far remove-details__icon" row="0" col="1"> </Label>
+      </GridLayout>
+    </StackLayout>
+  </FlexboxLayout>
+</AbsoluteLayout>
 
 <ng-template #spinner>
   <FlexboxLayout justifyContent="center" alignItems="center">
-    <ActivityIndicator #activityIndicator [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+    <ActivityIndicator #activityIndicator busy="true" class="activity-indicator"></ActivityIndicator>
   </FlexboxLayout>
 </ng-template>

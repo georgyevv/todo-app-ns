@@ -5,21 +5,21 @@ import * as app from "tns-core-modules/application";
 import { Todo } from "~/app/core/models/models";
 import { TodosRepoService } from '~/app/core/services/todos-repo.service';
 import { Store } from "~/app/core/state/app-store";
+import { tap } from 'rxjs/operators';
 
 @Component({
-    selector: "ns-my-day-host",
-    templateUrl: "./my-day-host.component.html",
-    styleUrls: ["./my-day-host.component.css"],
+    selector: "ns-today-host",
+    templateUrl: "./today-host.component.html",
+    styleUrls: ["./today-host.component.css"],
     moduleId: module.id
 })
-export class MyDayHostComponent implements OnInit {
-    public todos$ = this.store.select<Todo[]>("myDayTodos");
+export class TodayHostComponent implements OnInit {
+    public todos$ = this.store.select<Todo[]>("allTodos");
 
     constructor(private store: Store, private todoRepoService: TodosRepoService) {}
 
     public ngOnInit() {
-        //console.log("MyDayHostComponent init");
-        this.todoRepoService.fetchMyDayTodosList();
+        this.todoRepoService.fetchTodosList();
     }
 
     public onAddTodo(todo: Todo) {

@@ -1,12 +1,6 @@
 /* Add mobile styles for the component here.  */
-.action-bar {
-    background-color: coral;
-    border-color: coral;
-    z-index: 0;
-}
-
 .header {
-    padding-left: 60;
+    padding-left: 70;
     background-color: coral;
     color: white;
 }
@@ -23,7 +17,7 @@
 }
 
 .save-button {
-    font-size: 24;
+    font-size: 20;
     border-radius: 100;
     background-color: lightblue;
     color: coral;
@@ -31,6 +25,9 @@
 
 .options {
     padding: 10;
+}
+.option__icon {
+    font-size: 24;
 }
 
 .remove-details {

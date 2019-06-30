@@ -1,0 +1,14 @@
+<ActionBar class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="goBack()"></NavigationButton>
+  <Label class="action-bar-title" text=""></Label>
+</ActionBar>
+
+<ng-container *ngIf="todo$ | async as Todo; else spinner">
+  <ns-details-form [model]="todo$ | async" (save)="onSave($event)" (delete)="onDelete()"></ns-details-form>
+</ng-container>
+
+<ng-template #spinner>
+  <FlexboxLayout justifyContent="center" alignItems="center">
+    <ActivityIndicator #activityIndicator busy="true" class="activity-indicator"></ActivityIndicator>
+  </FlexboxLayout>
+</ng-template>

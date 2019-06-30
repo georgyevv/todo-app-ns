@@ -28,7 +28,7 @@ export class LoginPageComponent {
         try {
             const user = await this.authService.login(loginUser.email, loginUser.password);
             this.store.set("currentUser", user);
-            this.navigationService.navigate(["/my-day"], { clearHistory: true });
+            this.navigationService.navigate(["/today"], { clearHistory: true });
             // const token = await firebase.getAuthToken({ forceRefresh: false });
         } catch (error) {
             let options = {

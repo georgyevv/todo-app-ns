@@ -17,21 +17,9 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     <StackLayout row="1" class="hr-light m-10"></StackLayout>
 
     <StackLayout *ngIf="!expandUserOptions" row="2" class="sidedrawer-content">
-      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/my-day')">
+      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/today')">
         <Label col="0" text="&#xf185;" class="far"></Label>
-        <Label col="1" text="My day" class="p-l-10"></Label>
-      </GridLayout>
-      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/important')">
-        <Label col="0" text="&#xf005;" class="far"></Label>
-        <Label col="1" text="Important" class="p-l-10"></Label>
-      </GridLayout>
-      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/planned')">
-        <Label col="0" text="&#xf073;" class="far"></Label>
-        <Label col="1" text="Planned" class="p-l-10"></Label>
-      </GridLayout>
-      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/tasks')">
-        <Label col="0" text="&#xf0ae;" class="fas"></Label>
-        <Label col="1" text="Tasks" class="p-l-10"></Label>
+        <Label col="1" text="Today" class="p-l-10"></Label>
       </GridLayout>
     </StackLayout>
 
@@ -40,7 +28,6 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
         <Label text="&#xf013;" class="fas"></Label>
         <Label col="1" text="Settings" class="p-l-10"></Label>
       </GridLayout>
-      <StackLayout class="hr-light m-b-10"></StackLayout>
       <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="onSignOut()">
         <Label text="&#xf2f5;" class="fas"></Label>
         <Label col="1" text="Sign out" class="p-l-10"></Label>

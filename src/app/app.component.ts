@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import * as trace from "tns-core-modules/trace";
 const firebase = require("nativescript-plugin-firebase");
 
 import { NavigationService } from "./core/services/navigation.service";
@@ -27,19 +26,9 @@ export class AppComponent implements OnInit {
     constructor(private readonly store: Store, private readonly navigationService: NavigationService, private readonly authService: AuthService) {}
 
     public async ngOnInit(): Promise<void> {
-        trace.write("Some sample debug log", trace.categories.Debug);
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
-        await firebase.init({
-            persist: false,
-            onAuthStateChanged: (data: any) => {
-                // //console.log(data);
-                if (data.loggedIn) {
-                    //console.log("user's email address: " + (data.user.email ? data.user.email : "N/A"));
-                }
-            }
-        });
-        //console.log("firebase.init done");
+        await firebase.init({ persist: false });
     }
 
     public redirectAndCloseDrawer(url: string) {

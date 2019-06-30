@@ -1,0 +1,62 @@
+<AbsoluteLayout>
+  <Button #saveButton (tap)="onSave()" text="&#xf1d8;" class="fas save-button" width="60" height="60"></Button>
+
+  <FlexboxLayout flexDirection="column" width="100%" height="100%">
+    <StackLayout class="header">
+      <StackLayout class="header__item">
+        <Label text="Task" class="header__title"></Label>
+        <TextField [(ngModel)]="todo.title" class="header__text"></TextField>
+      </StackLayout>
+
+      <StackLayout class="header__item">
+        <Label text="Project" class="header__title"></Label>
+        <Label text="Inbox"></Label>
+      </StackLayout>
+    </StackLayout>
+
+    <GridLayout flexGrow="1" rows="auto, auto, auto, auto, auto, auto" columns="60, *" class="options">
+      <Label text="&#xf133;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="0" col="0"></Label>
+      <StackLayout row="0" col="1" class="m-b-25">
+        <Label text="Due date" class="font-weight-bold"></Label>
+        <Label text="No due date"></Label>
+      </StackLayout>
+
+      <Label text="&#xf024;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="1" col="0"></Label>
+      <StackLayout row="1" col="1" class="m-b-25">
+        <Label text="Priority" class="font-weight-bold"></Label>
+        <Label text="Priority 4"></Label>
+      </StackLayout>
+
+      <Label text="&#xf02c;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="2" col="0"></Label>
+      <StackLayout row="2" col="1" class="m-b-25">
+        <Label text="Labels" class="font-weight-bold"></Label>
+        <Label text="No label"></Label>
+      </StackLayout>
+
+      <Label text="&#xf550;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="3" col="0"></Label>
+      <StackLayout row="3" col="1" class="m-b-25">
+        <Label text="Parent" class="font-weight-bold"></Label>
+        <Label text="No parent"></Label>
+      </StackLayout>
+
+      <Label text="&#xf075;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="4" col="0"></Label>
+      <StackLayout row="4" col="1" class="m-b-25">
+        <Label text="Comments" class="font-weight-bold"></Label>
+        <Label text="No comments"></Label>
+      </StackLayout>
+
+      <Label text="&#xf017;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="5" col="0"></Label>
+      <StackLayout row="5" col="1" class="m-b-25">
+        <Label text="Reminders" class="font-weight-bold"></Label>
+        <Label text="No reminders"></Label>
+      </StackLayout>
+    </GridLayout>
+
+    <StackLayout alignSelf="flex-end" class="remove-details">
+      <GridLayout columns="*, 40" rows="*">
+        <Label [text]="'Updated a few moments ago'" class="remove-details__text" row="0" col="0"> </Label>
+        <Label (tap)="onDelete()" text="&#xf2ed;" class="far remove-details__icon" row="0" col="1"> </Label>
+      </GridLayout>
+    </StackLayout>
+  </FlexboxLayout>
+</AbsoluteLayout>

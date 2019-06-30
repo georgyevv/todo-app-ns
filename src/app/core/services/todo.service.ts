@@ -33,11 +33,9 @@ export class TodoService {
         return observable;
     }
 
-    public get getMyDayTodos$(): Observable<Todo[]> {
-        // //console.log("getMyDayTodos");
-
+    public get getTodayTodos$(): Observable<Todo[]> {
         const observable = Observable.create(subscriber => {
-            this.todosRef.where("isAddedToMyDay", "==", true).onSnapshot((snapshot: firestore.QuerySnapshot) => {
+            this.todosRef.where("isAddedToToday", "==", true).onSnapshot((snapshot: firestore.QuerySnapshot) => {
                 this.ngZone.run(() => {
                     const todos = [];
                     snapshot.forEach(docSnap => {

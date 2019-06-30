@@ -9,7 +9,7 @@ export class Todo {
         public description: string,
         public isCompleted: boolean,
         public completedOn: Date,
-        public isAddedToMyDay: boolean,
+        public isAddedToToday: boolean,
         public isAddedToImportant: boolean,
         public repeatType: number,
         public dueDate: Date,
