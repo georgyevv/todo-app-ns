@@ -7,12 +7,12 @@ import { TodosRepoService } from "~/app/core/services/todos-repo.service";
 import { Store } from "~/app/core/state/app-store";
 
 @Component({
-    selector: "ns-today-host",
-    templateUrl: "./today-host.component.html",
-    styleUrls: ["./today-host.component.css"],
+    selector: "ns-inbox-page",
+    templateUrl: "./inbox-page.component.html",
+    styleUrls: ["./inbox-page.component.css"],
     moduleId: module.id
 })
-export class TodayHostComponent implements OnInit {
+export class InboxPageComponent implements OnInit {
     public todos$ = this.store.select<Todo[]>("allTodos");
 
     constructor(private store: Store, private todoRepoService: TodosRepoService) {}

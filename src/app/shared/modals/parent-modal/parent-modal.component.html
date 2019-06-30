@@ -1,15 +1,13 @@
 <StackLayout width="100%">
   <Label text="Parent" class="h3" marginLeft="20" marginTop="10" marginBottom="20"></Label>
 
-  <StackLayout marginLeft="20" marginRight="20">
-    <ListView [items]="todos$ | async">
-      <ng-template let-todo="item">
-        <StackLayout class="parent__item" orientation="vertical" (tap)="onSelectParent(todo)">
-          <Label [text]="todo.title" [ngClass]="{'parent__item--active': selectedParent.title == todo.title}" width="100%"></Label>
-        </StackLayout>
-      </ng-template>
-    </ListView>
-  </StackLayout>
+  <ListView [items]="todos$ | async" marginLeft="20" marginRight="20">
+    <ng-template let-todo="item">
+      <StackLayout class="parent__item" orientation="vertical" (tap)="onSelectParent(todo)">
+        <Label [text]="todo.title" [ngClass]="{ 'parent__item--active': selectedParent.title == todo.title }" width="100%"></Label>
+      </StackLayout>
+    </ng-template>
+  </ListView>
 
   <StackLayout class="hr-light"></StackLayout>
 

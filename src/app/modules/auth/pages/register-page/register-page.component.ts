@@ -28,7 +28,7 @@ export class RegisterPageComponent {
         try {
             const user = await this.authService.register(registerUser.email, registerUser.password);
             this.store.set("currentUser", user);
-            this.navigationService.navigate(["/today"], { clearHistory: true });
+            this.navigationService.navigate(["/inbox"], { clearHistory: true });
         } catch (error) {
             const errorMsg = error.indexOf("FirebaseAuthUserCollisionException") > -1 ? "The email address is already in use by another account." : error;
 

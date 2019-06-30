@@ -8,6 +8,10 @@
       <Label text="&#xf024;" class="far selected-option__icon"></Label>
       <Label [text]="todo.priority" class="selected-option__text"></Label>
     </StackLayout>
+    <StackLayout *ngIf="todo.parent" class="selected-option" (tap)="onRemoveParent()" orientation="horizontal">
+      <Label text="&#xf550;" class="fas selected-option__icon"></Label>
+      <Label text="1" class="selected-option__text"></Label>
+    </StackLayout>
 
     <TextField id="todo-title" class="add-todo__input" hint="e.g. lunch on Monday at noon" [(ngModel)]="todo.title" #title="ngModel" required></TextField>
   </StackLayout>
@@ -22,7 +26,7 @@
     <Label text="&#xf133;" class="far option__icon" [ngClass]="{'option__icon--active': todo.dueDate}" (tap)="onOpenDuedateModal()"></Label>
     <Label text="&#xf024;" class="far option__icon" [ngClass]="{'option__icon--active': todo.priority}" (tap)="onOpenPrioritiesModal()"></Label>
     <Label text="&#xf02c;" class="fas option__icon"></Label>
-    <Label text="&#xf550;" class="fas option__icon"></Label>
+    <Label text="&#xf550;" class="fas option__icon" [ngClass]="{'option__icon--active': todo.parent}" (tap)="onOpenParentModal()"></Label>
     <Label text="&#xf075;" class="far option__icon"></Label>
     <Label text="&#xf017;" class="far option__icon"></Label>
   </FlexboxLayout>

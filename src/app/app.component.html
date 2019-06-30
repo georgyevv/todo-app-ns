@@ -17,14 +17,14 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     <StackLayout row="1" class="hr-light m-10"></StackLayout>
 
     <StackLayout *ngIf="!expandUserOptions" row="2" class="sidedrawer-content">
-      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/today')">
+      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/inbox')">
         <Label col="0" text="&#xf185;" class="far"></Label>
-        <Label col="1" text="Today" class="p-l-10"></Label>
+        <Label col="1" text="Inbox" class="p-l-10"></Label>
       </GridLayout>
     </StackLayout>
 
     <StackLayout *ngIf="expandUserOptions" row="2" class="sidedrawer-content">
-      <GridLayout columns="auto, *" class="sidedrawer-list-item">
+      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/settings')">
         <Label text="&#xf013;" class="fas"></Label>
         <Label col="1" text="Settings" class="p-l-10"></Label>
       </GridLayout>

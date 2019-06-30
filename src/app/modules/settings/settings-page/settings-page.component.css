@@ -1,0 +1,7 @@
+/* Add mobile styles for the component here.  */
+.action-bar {
+    background-color: coral;
+    border-color: coral;
+    color: white;
+    z-index: 0;
+}

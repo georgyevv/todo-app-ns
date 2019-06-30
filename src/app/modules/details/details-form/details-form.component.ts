@@ -27,7 +27,6 @@ export class DetailsFormComponent {
     }
 
     @Input() set model(model: Todo) {
-        console.log(model);
         this.todo = model;
     }
     @Output() save: EventEmitter<Todo> = new EventEmitter<Todo>();

@@ -2,14 +2,16 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
-import { TodayHostComponent } from "./modules/today/today-host/today-host.component";
+import { InboxPageComponent } from "./modules/inbox/inbox-page/inbox-page.component";
 import { AuthGuard } from "./modules/auth/services/auth.guard";
 import { DetailsPageComponent } from "./modules/details/details-page/details-page.component";
+import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 
 const routes: Routes = [
-    { path: "", redirectTo: "/today", pathMatch: "full" },
-    { path: "today", component: TodayHostComponent },
-    { path: "todo-details/:id", component: DetailsPageComponent },
+    { path: "", redirectTo: "/inbox", pathMatch: "full" },
+    { path: "inbox", component: InboxPageComponent, canActivate: [AuthGuard] },
+    { path: "settings", component: SettingsPageComponent, canActivate: [AuthGuard] },
+    { path: "todo-details/:id", component: DetailsPageComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -1,0 +1,15 @@
+<StackLayout width="100%">
+  <Label text="Pick a due date" class="h3" marginLeft="20" marginTop="10" marginBottom="20"></Label>
+
+  <DatePicker (loaded)="onPickerLoaded($event)"
+              (dayChange)="onDayChanged($event)"
+              (monthChange)="onMonthChanged($event)"
+              (yearChange)="onYearChanged($event)"
+              verticalAlignment="center">
+  </DatePicker>
+
+  <FlexboxLayout justifyContent="flex-end" class="actions" orientation="horizontal">
+    <Button text="CLOSE" class="close-button" (tap)="onCancel()"></Button>
+    <Button text="OK" class="close-button" (tap)="onSave()"></Button>
+  </FlexboxLayout>
+</StackLayout>

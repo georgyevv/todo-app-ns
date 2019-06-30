@@ -2,10 +2,11 @@ import { Component, EventEmitter, Output, OnInit, ViewContainerRef } from "@angu
 import { Page } from "tns-core-modules/ui/page";
 var utils = require("tns-core-modules/utils/utils");
 
-import { Todo } from "~/app/core/models/models";
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { DuedateModalComponent } from '../../modals/duedate-modal/duedate-modal.component';
 import { PrioritiesModalComponent } from '../../modals/priorities-modal/priorities-modal.component';
+import { ParentModalComponent } from '../../modals/parent-modal/parent-modal.component';
+import { Todo } from '~/app/core/models/models';
 
 @Component({
     selector: "ns-add-todo",
@@ -62,6 +63,23 @@ export class AddTodoComponent implements OnInit {
 
     public onRemovePriority() {
         this.todo.priority = undefined;
+    }
+
+    public async onOpenParentModal() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.viewContainerRef,
+            context: {},
+            fullscreen: false
+        };
+        const parent = await this.modalService.showModal(ParentModalComponent, options);
+        if (parent !== null) {
+            this.todo.parent = parent;
+        }
+        this.focusTitle();
+    }
+
+    public onRemoveParent() {
+        this.todo.parent = undefined;
     }
 
     public onAddTodo() {

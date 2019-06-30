@@ -10,6 +10,7 @@ import { DuedateModalComponent } from './modals/duedate-modal/duedate-modal.comp
 import { PrioritiesModalComponent } from './modals/priorities-modal/priorities-modal.component';
 import { FriendlyDatePipe } from './pipes/friendly-date.pipe';
 import { ParentModalComponent } from './modals/parent-modal/parent-modal.component';
+import { DatepickerModalComponent } from './modals/datepicker-modal/datepicker-modal.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { ParentModalComponent } from './modals/parent-modal/parent-modal.compone
         DuedateModalComponent,
         PrioritiesModalComponent,
         ParentModalComponent,
+        DatepickerModalComponent,
     ],
     imports: [
         NativeScriptCommonModule,
@@ -34,11 +36,13 @@ import { ParentModalComponent } from './modals/parent-modal/parent-modal.compone
         DuedateModalComponent,
         PrioritiesModalComponent,
         ParentModalComponent,
+        DatepickerModalComponent,
     ],
     entryComponents: [
         DuedateModalComponent,
         PrioritiesModalComponent,
         ParentModalComponent,
+        DatepickerModalComponent,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

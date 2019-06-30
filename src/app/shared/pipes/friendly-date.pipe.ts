@@ -22,7 +22,11 @@ export class FriendlyDatePipe implements PipeTransform {
                 return "Tommorow";
             }
 
-            return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}`;
+            if (date.getFullYear() === currentDate.getFullYear()) {
+                return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}`;
+            }
+
+            return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         }
 
         if (type == "dayOfWeek") {

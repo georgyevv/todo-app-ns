@@ -5,12 +5,13 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { TodayModule } from './modules/today/today.module';
+import { InboxModule } from './modules/inbox/inbox.module';
 import { SearchModule } from './modules/search/search.module';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { DetailsModule } from './modules/details/details.module';
+import { SettingsModule } from './modules/settings/settings.module';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -28,8 +29,9 @@ import { DetailsModule } from './modules/details/details.module';
         AuthModule,
         DetailsModule,
         CoreModule,
-        TodayModule,
+        InboxModule,
         SearchModule,
+        SettingsModule,
     ],
     declarations: [
         AppComponent

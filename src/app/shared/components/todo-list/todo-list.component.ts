@@ -5,6 +5,7 @@ import { screen } from "tns-core-modules/platform";
 import { Button } from "tns-core-modules/ui/button";
 import { View } from "tns-core-modules/ui/core/view/view";
 import { AbsoluteLayout } from "tns-core-modules/ui/layouts/absolute-layout";
+import { confirm, ConfirmOptions } from "tns-core-modules/ui/dialogs";
 
 import { Todo } from "../../../core/models/models";
 import { NavigationService } from "../../../core/services/navigation.service";
@@ -78,9 +79,21 @@ export class TodoListComponent implements OnInit {
         this.myListViewComponent.listView.notifySwipeToExecuteFinished();
     }
 
-    public onRightSwipeClick(args) {
-        const todo: Todo = <Todo>args.object.bindingContext;
-        this.todoRepoService.deleteTodo(todo.id);
+    public async onRightSwipeClick(args) {
+        const confirmOptions = {
+            title: "Confirmation required",
+            message: "Are you sure you want to delete this record?",
+            okButtonText: "Delete",
+            cancelButtonText: "Cancel"
+        } as ConfirmOptions;
+        const shouldDelete = await confirm(confirmOptions);
+
         this.myListViewComponent.listView.notifySwipeToExecuteFinished();
+
+        if (shouldDelete) {
+            const todo: Todo = <Todo>args.object.bindingContext;
+            this.todoRepoService.deleteTodo(todo.id);
+            this.myListViewComponent.listView.notifySwipeToExecuteFinished();
+        }
     }
 }
