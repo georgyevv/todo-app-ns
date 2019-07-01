@@ -2,6 +2,22 @@
   <NavigationButton ios:visibility="collapsed" icon="res://menu_black" (tap)="onDrawerButtonTap()"></NavigationButton>
   <ActionItem icon="res://navigation/menu_black" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left"> </ActionItem>
   <Label class="action-bar-title" text="Settings"></Label>
+  <ActionItem (tap)="onRestoreAllDefauls()" text="Restore all defaults" ios.systemIcon="16" ios.position="right" android.position="popup"></ActionItem>
 </ActionBar>
 
-<Button text="settings-page works!" class="btn btn-primary"></Button>
+<GridLayout rows="60, 60, 60, 60" columns="40, *" class="settings">
+  <Label text="&#xf2bd;" class="fas settings__icon" row="0" col="0"></Label>
+  <Label text="Account" class="settings__text" row="0" col="1"></Label> -->
+
+  <Label text="&#xf013;" class="fas settings__icon" row="1" col="0"></Label>
+  <Label text="General" class="settings__text" row="1" col="1"></Label>
+
+  <Label text="&#xf0f3;" class="fas settings__icon" row="2" col="0"></Label>
+  <Label text="Notifications" class="settings__text" row="2" col="1"></Label>
+
+  <Label text="&#xf2f5;" class="fas settings__icon" row="3" col="0"></Label>
+  <StackLayout row="3" col="1" orientation="vertical" class="logout">
+    <Label text="Log out" class="settings__text"></Label>
+    <Label [text]="(currentUser$ | async)?.email" class="logout__current-user"></Label>
+  </StackLayout>
+</GridLayout>

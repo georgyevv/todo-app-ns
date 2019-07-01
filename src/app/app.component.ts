@@ -40,8 +40,8 @@ export class AppComponent implements OnInit {
         this.expandUserOptions = !this.expandUserOptions;
     }
 
-    public async onSignOut() {
-        await this.authService.signOut();
+    public async onLogOut() {
+        await this.authService.logOut();
         this.closeDrawer();
         this.navigationService.navigate(["/auth"], { clearHistory: true });
     }

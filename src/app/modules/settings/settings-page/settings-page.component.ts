@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
+import { Store } from "~/app/core/state/app-store";
 
 @Component({
     selector: "ns-settings-page",
@@ -8,13 +9,15 @@ import * as app from "tns-core-modules/application";
     styleUrls: ["./settings-page.component.css"],
     moduleId: module.id
 })
-export class SettingsPageComponent implements OnInit {
-    constructor() {}
+export class SettingsPageComponent {
+    public currentUser$ = this.store.select<any>("currentUser");
 
-    ngOnInit() {}
+    constructor(private readonly store: Store) {}
 
     public onDrawerButtonTap(): void {
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.showDrawer();
     }
+
+    public onRestoreAllDefauls() {}
 }

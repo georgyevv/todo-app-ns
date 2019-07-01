@@ -8,10 +8,10 @@ import { DetailsPageComponent } from "./modules/details/details-page/details-pag
 import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 
 const routes: Routes = [
-    { path: "", redirectTo: "/inbox", pathMatch: "full" },
-    { path: "inbox", component: InboxPageComponent, canActivate: [AuthGuard] },
-    { path: "settings", component: SettingsPageComponent, canActivate: [AuthGuard] },
-    { path: "todo-details/:id", component: DetailsPageComponent, canActivate: [AuthGuard] }
+    { path: "", redirectTo: "/settings", pathMatch: "full" },
+    { path: "inbox", component: InboxPageComponent},
+    { path: "settings", component: SettingsPageComponent, canActivate: [AuthGuard]},
+    { path: "todo-details/:id", component: DetailsPageComponent}
 ];
 
 @NgModule({

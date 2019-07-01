@@ -1,0 +1,17 @@
+/* Add mobile styles for the component here.  */
+.container {
+    padding: 10;
+}
+
+.activity-indicator {
+    text-align: left;
+    vertical-align: center;
+    color: coral;
+    margin-right: 20;
+}
+
+.loading-text{
+    vertical-align: center;
+    text-align: left;
+    color: coral;
+}

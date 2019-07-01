@@ -26,7 +26,7 @@ export class AuthService {
         return firebase.createUser({ email: email, password: password });
     }
 
-    public signOut(): Promise<void> {
+    public logOut(): Promise<void> {
         return firebase.logout();
     }
 }
