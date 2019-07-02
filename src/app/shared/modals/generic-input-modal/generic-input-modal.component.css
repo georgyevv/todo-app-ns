@@ -1,0 +1,12 @@
+/* Add mobile styles for the component here.  */
+.button-disabled {
+    z-index: 0;
+    color: gray;
+    background-color: white;
+}
+
+.action-button {
+    z-index: 0;
+    color: coral;
+    background-color: white;
+}

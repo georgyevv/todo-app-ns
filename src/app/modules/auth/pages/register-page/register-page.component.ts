@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from "@angular/core";
+import { Component, ViewContainerRef, OnDestroy } from "@angular/core";
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular/modal-dialog";
 import { Subject } from "rxjs";
 
@@ -7,6 +7,7 @@ import { AuthService } from "../../services/auth.service";
 import { NavigationService } from "~/app/core/services/navigation.service";
 import { Store } from "~/app/core/state/app-store";
 import { LoadingModalComponent } from "~/app/shared/modals/loading-modal/loading-modal.component";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: "ns-register-page",
@@ -14,18 +15,19 @@ import { LoadingModalComponent } from "~/app/shared/modals/loading-modal/loading
     styleUrls: ["./register-page.component.css"],
     moduleId: module.id
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnDestroy {
     private loadingDialog$$: Subject<void>;
-
     public currentUser: RegisterUser;
+
+    private registrationSubscription: Subscription;
 
     constructor(
         private readonly authService: AuthService,
         private readonly store: Store,
         private readonly navigationService: NavigationService,
         private readonly modalService: ModalDialogService,
-        private readonly viewContainerRef: ViewContainerRef) {
-
+        private readonly viewContainerRef: ViewContainerRef
+    ) {
         this.currentUser = new RegisterUser("", "", "");
         this.loadingDialog$$ = new Subject();
     }
@@ -33,23 +35,29 @@ export class RegisterPageComponent {
     public async onRegister(registerUser: RegisterUser) {
         this.openLoadingModal();
 
-        try {
-            const user = await this.authService.register(registerUser.email, registerUser.password);
-            this.store.set("currentUser", user);
-            this.navigationService.navigate(["/inbox"], { clearHistory: true });
-            this.loadingDialog$$.next();
-        } catch (error) {
-            const errorMsg = error.indexOf("FirebaseAuthUserCollisionException") > -1 ? "The email address is already in use by another account." : error;
+        this.registrationSubscription = this.authService.register(registerUser.email, registerUser.password).subscribe(
+            () => {
+                this.loadingDialog$$.next();
+                setTimeout(() => this.navigationService.navigate(["/inbox"], { clearHistory: true }), 1);
+            },
+            error => {
+                this.currentUser = new RegisterUser("", "", "");
+                this.loadingDialog$$.next();
 
-            let options = {
-                title: "Register Error",
-                message: errorMsg,
-                okButtonText: "OK"
-            };
+                const errorMsg = error.indexOf("FirebaseAuthUserCollisionException") > -1 ? "The email address is already in use by another account." : error;
+                let options = {
+                    title: "Register Error",
+                    message: errorMsg,
+                    okButtonText: "OK"
+                };
+                alert(options);
+            }
+        );
+    }
 
-            this.loadingDialog$$.next();
-            await alert(options);
-            this.currentUser = new RegisterUser("", "", "");
+    public ngOnDestroy() {
+        if (this.registrationSubscription) {
+            this.registrationSubscription.unsubscribe();
         }
     }
 

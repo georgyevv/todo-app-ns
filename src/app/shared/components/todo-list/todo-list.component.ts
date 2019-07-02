@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, AfterViewInit } from "@angular/core";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { RadListViewComponent } from "nativescript-ui-listview/angular/listview-directives";
 import { screen } from "tns-core-modules/platform";
@@ -17,7 +17,7 @@ import { TodosRepoService } from "../../../core/services/todos-repo.service";
     styleUrls: ["./todo-list.component.css"],
     moduleId: module.id
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements AfterViewInit {
     public showAddTodo: boolean = false;
 
     @ViewChild("addTodoButton", { static: true }) addTodoButton: ElementRef;
@@ -25,15 +25,18 @@ export class TodoListComponent implements OnInit {
 
     @Input() todoItems: Todo[];
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
+    @Output() load: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosRepoService) {}
 
-    public ngOnInit() {
+    public ngAfterViewInit() {
         const button = <Button>this.addTodoButton.nativeElement;
         // This is not okay must be changes (150) is for the top navigation which is included in the heightDIP i guess
         AbsoluteLayout.setTop(button, screen.mainScreen.heightDIPs - Number(button.height) - 150);
         // This is not okay must be changes (20) wtf is 20 ? margin righ - MAGIN NUMBER
         AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 20);
+
+        this.load.emit();
     }
 
     public onItemTap(id: number) {

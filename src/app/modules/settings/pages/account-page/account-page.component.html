@@ -1,0 +1,40 @@
+<ActionBar class="action-bar">
+  <NavigationButton ios:visibility="collapsed" icon="res://menu_black" (tap)="onDrawerButtonTap()"></NavigationButton>
+  <ActionItem icon="res://navigation/menu_black" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left"> </ActionItem>
+  <Label class="action-bar-title" text="Account"></Label>
+</ActionBar>
+
+<StackLayout orientation="vertical">
+  <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourAvatar()">
+    <Label text="Avatar" class="account__title"></Label>
+    <Label text="Change your profile picture" class="account__details"></Label>
+  </StackLayout>
+  <StackLayout class="hr-light m-5"></StackLayout>
+
+  <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourDisplayName()">
+    <Label text="Name" class="account__title"></Label>
+    <Label [text]="(currentUser$ | async).displayName ? (currentUser$ | async).displayName : '- - -'" class="account__details"></Label>
+  </StackLayout>
+  <StackLayout class="hr-light m-5"></StackLayout>
+
+  <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourEmail()">
+    <Label text="Email" class="account__title"></Label>
+    <Label [text]="(currentUser$ | async).email" class="account__details"></Label>
+  </StackLayout>
+  <StackLayout class="hr-light m-5"></StackLayout>
+
+  <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourPassword()">
+    <Label text="Password" class="account__title"></Label>
+    <Label text="Change your password" class="account__details"></Label>
+  </StackLayout>
+  <StackLayout class="hr-light m-5"></StackLayout>
+
+  <StackLayout orientation="horizontal" class="account_item" (tap)="onDeleteAccount()">
+    <Label text="&#xf071;" class="fas delete__icon"></Label>
+    <StackLayout orientation="vertical">
+      <Label text="Delete account" class="account__title"></Label>
+      <Label textWrap="true" text="Deleting your account is permanent. All your data will be wiped out immediately and you won't be able to get it back." class="account__details"></Label>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout class="hr-light m-5"></StackLayout>
+</StackLayout>

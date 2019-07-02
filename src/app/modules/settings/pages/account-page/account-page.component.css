@@ -1,0 +1,28 @@
+/* Add mobile styles for the component here.  */
+.action-bar {
+    background-color: coral;
+    border-color: coral;
+    color: white;
+    z-index: 0;
+}
+
+.account_item {
+    padding: 20;
+}
+.account__title {
+    font-size: 16;
+    color: black;
+    margin-bottom: 5;
+}
+.account__details {
+    font-size: 14;
+    color: gray;
+}
+
+.delete__icon {
+    font-size: 16;
+    vertical-align: center;
+    text-align: center;
+    margin-right: 20;
+    color: red;
+}

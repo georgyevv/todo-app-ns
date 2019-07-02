@@ -8,7 +8,7 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     <GridLayout row="0" rows="auto" columns="*, 50" (tap)="toggleUserOptions()">
       <StackLayout row="0" col="0" class="sidedrawer-header">
         <Label class="sidedrawer-header-image fas" text="&#xf2bd;"></Label>
-        <Label class="sidedrawer-header-brand" [text]="(currentUser$ | async)?.displayName ? (currentUser$ | async)?.displayName : 'No display name'"></Label>
+        <Label class="sidedrawer-header-brand" [text]="(currentUser$ | async)?.displayName ? (currentUser$ | async)?.displayName : '- - -'"></Label>
         <Label class="footnote" [text]="(currentUser$ | async)?.email"></Label>
       </StackLayout>
       <Label row="0" col="1" [text]="expandUserOptions ? '&#xf106;' : '&#xf107;'" class="fas user-options"></Label>
@@ -33,12 +33,13 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
         <Label col="1" text="Log out" class="p-l-10"></Label>
       </GridLayout>
     </StackLayout>
-
-    <GridLayout row="3" columns="auto, *" class="sidedrawer-footer">
-      <Label col="0" text="&#xf067;" class="fas"></Label>
-      <Label col="1" text="New list" class="p-l-10 m-b-20"></Label>
-    </GridLayout>
   </GridLayout>
 
-  <page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
+  <StackLayout tkMainContent height="100%">
+    <page-router-outlet class="page page-content" [visibility]="!(showSpinner$ | async) ? 'visible' : 'collapsed'"></page-router-outlet>
+
+    <FlexboxLayout #spinner [visibility]="(showSpinner$ | async) ? 'visible' : 'collapsed'" justifyContent="center" alignItems="center" height="100%">
+      <ActivityIndicator #activityIndicator busy="true" class="activity-indicator"></ActivityIndicator>
+    </FlexboxLayout>
+  </StackLayout>
 </RadSideDrawer>

@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: "ns-loading-modal",
@@ -7,11 +8,21 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
     styleUrls: ["./loading-modal.component.css"],
     moduleId: module.id
 })
-export class LoadingModalComponent {
+export class LoadingModalComponent implements OnDestroy {
+    private subscription: Subscription;
+
     constructor(private readonly params: ModalDialogParams) {
-        params.context.closeObserver.subscribe(() => {
-            this.close();
-        });
+        if (params.context.closeObserver) {
+            this.subscription = params.context.closeObserver.subscribe(() => {
+                this.close();
+            });
+        }
+    }
+
+    public ngOnDestroy(): void {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 
     public close() {

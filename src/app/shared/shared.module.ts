@@ -12,6 +12,7 @@ import { FriendlyDatePipe } from './pipes/friendly-date.pipe';
 import { ParentModalComponent } from './modals/parent-modal/parent-modal.component';
 import { DatepickerModalComponent } from './modals/datepicker-modal/datepicker-modal.component';
 import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
+import { GenericInputModalComponent } from './modals/generic-input-modal/generic-input-modal.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { LoadingModalComponent } from './modals/loading-modal/loading-modal.comp
         ParentModalComponent,
         DatepickerModalComponent,
         LoadingModalComponent,
+        GenericInputModalComponent,
     ],
     imports: [
         NativeScriptCommonModule,
@@ -40,6 +42,7 @@ import { LoadingModalComponent } from './modals/loading-modal/loading-modal.comp
         ParentModalComponent,
         DatepickerModalComponent,
         LoadingModalComponent,
+        GenericInputModalComponent,
     ],
     entryComponents: [
         DuedateModalComponent,
@@ -47,6 +50,7 @@ import { LoadingModalComponent } from './modals/loading-modal/loading-modal.comp
         ParentModalComponent,
         DatepickerModalComponent,
         LoadingModalComponent,
+        GenericInputModalComponent,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

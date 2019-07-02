@@ -5,13 +5,19 @@ import { Todo } from "../models/models";
 import { TodosRepository } from "../repositories/todos.repository";
 import { Store } from "../state/app-store";
 import { ServerErrorHandlerService } from "./server-error-handler.service";
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class TodosRepoService {
     private fetchedAllTodosList: boolean = false;
     private fetchedTodayTodosList: boolean = false;
 
-    constructor(private repo: TodosRepository, private store: Store, private errorHandlerService: ServerErrorHandlerService, private zone: NgZone) {}
+    constructor(
+        private repo: TodosRepository,
+        private store: Store,
+        private errorHandlerService: ServerErrorHandlerService,
+        private zone: NgZone,
+        private loggerService: LoggerService) {}
 
     public fetchTodosList() {
         if (this.fetchedAllTodosList) {
@@ -69,26 +75,26 @@ export class TodosRepoService {
                     this.store.set("selectedTodo", todo);
                 }
 
-                // Throw error?
+                this.loggerService.error("The searched todo doesn't exists!");
             });
         });
     }
 
     public addTodo(todo: Todo) {
         this.repo.addTodo(todo, this.errorHandlerService.handleFirestoreError, (querySnapshot: firestore.DocumentReference) => {
-            //console.log("Added todo");
+            this.loggerService.log("Added todo");
         });
     }
 
     public updateTodo(todo: Todo) {
         this.repo.updateTodo(todo, this.errorHandlerService.handleFirestoreError, () => {
-            //console.log("Updated todo");
+            this.loggerService.log("Updated todo");
         });
     }
 
     public deleteTodo(todoId) {
         this.repo.deleteTodo(todoId, this.errorHandlerService.handleFirestoreError, () => {
-            //console.log("Deleted todo: " + todoId);
+            this.loggerService.log("Deleted todo");
         });
     }
 }

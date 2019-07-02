@@ -7,7 +7,7 @@
 
 <GridLayout rows="60, 60, 60, 60" columns="40, *" class="settings">
   <Label text="&#xf2bd;" class="fas settings__icon" row="0" col="0"></Label>
-  <Label text="Account" class="settings__text" row="0" col="1"></Label> -->
+  <Label text="Account" class="settings__text" row="0" col="1" (tap)="onNavigate('account')"></Label>
 
   <Label text="&#xf013;" class="fas settings__icon" row="1" col="0"></Label>
   <Label text="General" class="settings__text" row="1" col="1"></Label>
@@ -16,7 +16,7 @@
   <Label text="Notifications" class="settings__text" row="2" col="1"></Label>
 
   <Label text="&#xf2f5;" class="fas settings__icon" row="3" col="0"></Label>
-  <StackLayout row="3" col="1" orientation="vertical" class="logout">
+  <StackLayout row="3" col="1" orientation="vertical" class="logout" (tap)="onLogOut()">
     <Label text="Log out" class="settings__text"></Label>
     <Label [text]="(currentUser$ | async)?.email" class="logout__current-user"></Label>
   </StackLayout>

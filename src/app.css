@@ -20,6 +20,7 @@ refer to http://docs.nativescript.org/ui/theme.
   height: 100;
   width: 100;
   vertical-align: center;
+  color: coral;
 }
 
 .far {

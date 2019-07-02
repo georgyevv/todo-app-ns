@@ -25,13 +25,13 @@ import { SettingsModule } from './modules/settings/settings.module';
         NativeScriptUISideDrawerModule,
         NativeScriptHttpClientModule,
         SharedModule,
-        AppRoutingModule,
         AuthModule,
         DetailsModule,
         CoreModule,
         InboxModule,
         SearchModule,
         SettingsModule,
+        AppRoutingModule,
     ],
     declarations: [
         AppComponent

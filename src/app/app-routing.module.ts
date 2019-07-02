@@ -5,12 +5,10 @@ import { Routes } from "@angular/router";
 import { InboxPageComponent } from "./modules/inbox/inbox-page/inbox-page.component";
 import { AuthGuard } from "./modules/auth/services/auth.guard";
 import { DetailsPageComponent } from "./modules/details/details-page/details-page.component";
-import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 
 const routes: Routes = [
-    { path: "", redirectTo: "/settings", pathMatch: "full" },
-    { path: "inbox", component: InboxPageComponent},
-    { path: "settings", component: SettingsPageComponent, canActivate: [AuthGuard]},
+    { path: "", redirectTo: "inbox", pathMatch: "full" },
+    { path: "inbox", component: InboxPageComponent, canActivate: [AuthGuard]},
     { path: "todo-details/:id", component: DetailsPageComponent}
 ];
 

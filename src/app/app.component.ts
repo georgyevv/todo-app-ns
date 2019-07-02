@@ -6,6 +6,8 @@ const firebase = require("nativescript-plugin-firebase");
 import { NavigationService } from "./core/services/navigation.service";
 import { AuthService } from "./modules/auth/services/auth.service";
 import { Store } from "./core/state/app-store";
+import { tap } from "rxjs/operators";
+import { LoggerService } from './core/services/logger.service';
 
 @Component({
     moduleId: module.id,
@@ -13,19 +15,24 @@ import { Store } from "./core/state/app-store";
     templateUrl: "app.component.html"
 })
 export class AppComponent implements OnInit {
-    public showSpinner$ = this.store.select<boolean>("showSpinner");
+    public showSpinner$ = this.store.select<boolean>("showSpinner").pipe(tap(data => console.log(data)));
     public currentUser$ = this.store.select<any>("currentUser");
     public expandUserOptions: boolean = false;
 
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    get sideDrawerTransition(): DrawerTransitionBase {
+    public get sideDrawerTransition(): DrawerTransitionBase {
         return this._sideDrawerTransition;
     }
 
-    constructor(private readonly store: Store, private readonly navigationService: NavigationService, private readonly authService: AuthService) {}
+    constructor(
+        private readonly store: Store,
+        private readonly navigationService: NavigationService,
+        private readonly authService: AuthService,
+        private readonly loggerService: LoggerService) {}
 
     public async ngOnInit(): Promise<void> {
+        this.loggerService.log("AppComponent#ngOnInit");
         this._sideDrawerTransition = new SlideInOnTopTransition();
 
         await firebase.init({ persist: false });
@@ -33,7 +40,7 @@ export class AppComponent implements OnInit {
 
     public redirectAndCloseDrawer(url: string) {
         this.closeDrawer();
-        this.navigationService.navigate([url], { transition: { name: "slideLeft" }, clearHistory: true });
+        this.navigationService.navigate([url], { transition: { name: "slideLeft" } });
     }
 
     public toggleUserOptions() {
@@ -43,7 +50,7 @@ export class AppComponent implements OnInit {
     public async onLogOut() {
         await this.authService.logOut();
         this.closeDrawer();
-        this.navigationService.navigate(["/auth"], { clearHistory: true });
+        this.navigationService.navigate(["auth"], { clearHistory: true });
     }
 
     private closeDrawer() {
