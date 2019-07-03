@@ -5,10 +5,16 @@
 </ActionBar>
 
 <StackLayout orientation="vertical">
-  <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourAvatar()">
-    <Label text="Avatar" class="account__title"></Label>
-    <Label text="Change your profile picture" class="account__details"></Label>
-  </StackLayout>
+  <GridLayout rows="auto" columns="*, 60">
+    <StackLayout row="0" col="0" orientation="vertical" class="account_item" (tap)="onChangeYourAvatar()">
+      <Label text="Avatar" class="account__title"></Label>
+      <Label text="Change your profile picture" class="account__details"></Label>
+    </StackLayout>
+
+    <Image row="0" col="1" *ngIf="(currentUser$ | async)?.photoURL" [src]="(currentUser$ | async)?.photoURL" class="avatar"></Image>
+    <Label row="0" col="1" *ngIf="!(currentUser$ | async)?.photoURL" text="&#xf2bd;" class="avatar avatar--no-photo fas"></Label>
+  </GridLayout>
+
   <StackLayout class="hr-light m-5"></StackLayout>
 
   <StackLayout orientation="vertical" class="account_item" (tap)="onChangeYourDisplayName()">

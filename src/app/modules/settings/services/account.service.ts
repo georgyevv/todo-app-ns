@@ -14,10 +14,11 @@ export class AccountService {
         private loggerService: LoggerService) {}
 
     public updateProfileIMG(photoURL: string): void {
-        this.repo.updateProfileIMG(photoURL, this.errorHandlerService.handleFirestoreError, () => {
+        const currentUser = this.store.value.currentUser;
+
+        this.repo.updateProfile(currentUser.displayName, photoURL, this.errorHandlerService.handleFirestoreError, () => {
             this.zone.run(() =>
             {
-                const currentUser = this.store.value.currentUser;
                 currentUser.photoURL = photoURL;
                 this.store.set("currentUser", currentUser);
                 this.loggerService.log("Changed user photo url");
@@ -26,10 +27,11 @@ export class AccountService {
     }
 
     public updateDisplayName(displayName: string): void {
-        this.repo.updateDisplayName(displayName, this.errorHandlerService.handleFirestoreError, () => {
+        const currentUser = this.store.value.currentUser;
+
+        this.repo.updateProfile(displayName, currentUser.photoURL, this.errorHandlerService.handleFirestoreError, () => {
             this.zone.run(() =>
             {
-                const currentUser = this.store.value.currentUser;
                 currentUser.displayName = displayName;
                 this.store.set("currentUser", currentUser);
                 this.loggerService.log("Changed user display name");

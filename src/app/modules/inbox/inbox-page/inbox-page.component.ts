@@ -3,7 +3,7 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 
 import { Todo } from "~/app/core/models/models";
-import { TodosRepoService } from "~/app/core/services/todos-repo.service";
+import { TodosService } from "~/app/core/services/todos.service";
 import { Store } from "~/app/core/state/app-store";
 import { LoggerService } from '~/app/core/services/logger.service';
 
@@ -16,13 +16,13 @@ import { LoggerService } from '~/app/core/services/logger.service';
 export class InboxPageComponent implements OnInit {
     public todos$ = this.store.select<Todo[]>("allTodos");
 
-    constructor(private store: Store, private todoRepoService: TodosRepoService, private readonly loggerService: LoggerService) {
+    constructor(private store: Store, private todoRepoService: TodosService, private readonly loggerService: LoggerService) {
         this.store.set("showSpinner", true);
     }
 
     public ngOnInit() {
         this.loggerService.log("InboxPageComponent#ngOnInit");
-        this.todoRepoService.fetchTodosList();
+        this.todoRepoService.getTodosList();
     }
 
     public onTodoListLoad() {

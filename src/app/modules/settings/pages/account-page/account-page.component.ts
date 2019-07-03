@@ -3,13 +3,16 @@ import { ModalDialogOptions, ModalDialogService } from "nativescript-angular/mod
 import * as firebase from "nativescript-plugin-firebase";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { confirm } from "tns-core-modules/ui/dialogs";
+import { confirm, action } from "tns-core-modules/ui/dialogs";
 
 import { AccountService } from "~/app/modules/settings/services/account.service";
 import { Store } from "~/app/core/state/app-store";
 import { GenericInputModalComponent } from "~/app/shared/modals/generic-input-modal/generic-input-modal.component";
-import { AuthService } from '~/app/modules/auth/services/auth.service';
-import { NavigationService } from '~/app/core/services/navigation.service';
+import { AuthService } from "~/app/modules/auth/services/auth.service";
+import { NavigationService } from "~/app/core/services/navigation.service";
+import { UploadFileResult } from "nativescript-plugin-firebase/storage/storage";
+import { FileService } from "~/app/core/services/file.service";
+import { CameraService } from "~/app/core/services/camera.service";
 
 @Component({
     selector: "ns-account-page",
@@ -27,17 +30,26 @@ export class AccountPageComponent {
         private readonly accountService: AccountService,
         private readonly authService: AuthService,
         private readonly navigationService: NavigationService,
+        private readonly fileService: FileService,
+        private readonly cameraService: CameraService
     ) {}
 
     public async onChangeYourAvatar() {
-        const options: ModalDialogOptions = {
-            viewContainerRef: this.viewContainerRef,
-            context: {},
-            fullscreen: false
+        let options = {
+            actions: ["Take photo", "Choose photo", "Remove current photo"]
         };
-        const newPhotoURL: string = await this.modalService.showModal(GenericInputModalComponent, options);
-        if (newPhotoURL) {
-            this.accountService.updateProfileIMG(newPhotoURL);
+
+        const actionResult = await action(options);
+        if (actionResult === "Take photo") {
+            const imageAsset = await this.cameraService.takePicture();
+            const imageURL = await this.fileService.uploadUserProfilePicture(imageAsset.android);
+            this.accountService.updateProfileIMG(imageURL);
+        } else if (actionResult === "Choose photo") {
+            const imageAsset = await this.fileService.selectImageFromPhone();
+            const imageURL = await this.fileService.uploadUserProfilePicture(imageAsset.android);
+            this.accountService.updateProfileIMG(imageURL);
+        } else if (actionResult === "Remove current photo") {
+            this.accountService.updateProfileIMG("");
         }
     }
 
@@ -72,7 +84,7 @@ export class AccountPageComponent {
     public async onChangeYourPassword() {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
-            context: { title: "Password" },
+            context: { title: "Password", isPassword: true },
             fullscreen: false
         };
         const newPassword = await this.modalService.showModal(GenericInputModalComponent, options);

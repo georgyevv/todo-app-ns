@@ -9,7 +9,7 @@ import { confirm, ConfirmOptions } from "tns-core-modules/ui/dialogs";
 
 import { Todo } from "../../../core/models/models";
 import { NavigationService } from "../../../core/services/navigation.service";
-import { TodosRepoService } from "../../../core/services/todos-repo.service";
+import { TodosService } from "../../../core/services/todos.service";
 
 @Component({
     selector: "ns-todo-list",
@@ -27,7 +27,7 @@ export class TodoListComponent implements AfterViewInit {
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
     @Output() load: EventEmitter<void> = new EventEmitter<void>();
 
-    constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosRepoService) {}
+    constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosService) {}
 
     public ngAfterViewInit() {
         const button = <Button>this.addTodoButton.nativeElement;

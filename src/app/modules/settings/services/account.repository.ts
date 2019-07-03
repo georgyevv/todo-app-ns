@@ -3,16 +3,9 @@ import * as firebase from "nativescript-plugin-firebase";
 
 @Injectable()
 export class AccountRepository {
-    public updateProfileIMG(photoURL: string, errorHandler: (error: any) => any, successHandler: () => any): void {
+    public updateProfile(displayName: string, photoURL: string, errorHandler: (error: any) => any, successHandler: () => any): void {
         firebase
-            .updateProfile({ photoURL: photoURL })
-            .then(successHandler)
-            .catch(errorHandler);
-    }
-
-    public updateDisplayName(displayName: string, errorHandler: (error: any) => any, successHandler: () => any): void {
-        firebase
-            .updateProfile({ displayName: displayName })
+            .updateProfile({ displayName: displayName, photoURL: photoURL })
             .then(successHandler)
             .catch(errorHandler);
     }
@@ -32,6 +25,9 @@ export class AccountRepository {
     }
 
     public deleteAccount(errorHandler: (error: any) => any, successHandler: () => any): void {
-        firebase.deleteUser().then(successHandler).catch(errorHandler);
+        firebase
+            .deleteUser()
+            .then(successHandler)
+            .catch(errorHandler);
     }
 }

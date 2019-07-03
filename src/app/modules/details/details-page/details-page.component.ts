@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { confirm, ConfirmOptions } from "tns-core-modules/ui/dialogs";
 
 import { NavigationService } from "~/app/core/services/navigation.service";
-import { TodosRepoService } from "~/app/core/services/todos-repo.service";
+import { TodosService } from "~/app/core/services/todos.service";
 import { Todo } from "~/app/core/models/models";
 import { Store } from "~/app/core/state/app-store";
 
@@ -22,11 +22,11 @@ export class DetailsPageComponent implements OnInit {
         private readonly store: Store,
         private readonly route: ActivatedRoute,
         private readonly navigationService: NavigationService,
-        private readonly todosRepoService: TodosRepoService) {}
+        private readonly todosRepoService: TodosService) {}
 
     public ngOnInit() {
         this.todoId = this.route.snapshot.paramMap.get("id");
-        this.todosRepoService.fetchTodoDetails(this.todoId);
+        this.todosRepoService.getTodoDetails(this.todoId);
     }
 
     public onSave(todo: Todo) {

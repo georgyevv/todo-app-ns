@@ -1,7 +1,7 @@
 <StackLayout width="350">
   <Label [text]="title" class="h2" marginLeft="20" marginTop="10" marginBottom="20"></Label>
 
-  <TextField [(ngModel)]="text" required #textField="ngModel" marginLeft="20" marginRight="20"></TextField>
+  <TextField [(ngModel)]="text" required #textField="ngModel" marginLeft="20" marginRight="20" [secure]="isPassword"></TextField>
 
   <FlexboxLayout justifyContent="flex-end" class="actions" orientation="horizontal">
     <Button text="CLOSE"

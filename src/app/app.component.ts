@@ -19,12 +19,6 @@ export class AppComponent implements OnInit {
     public currentUser$ = this.store.select<any>("currentUser");
     public expandUserOptions: boolean = false;
 
-    private _sideDrawerTransition: DrawerTransitionBase;
-
-    public get sideDrawerTransition(): DrawerTransitionBase {
-        return this._sideDrawerTransition;
-    }
-
     constructor(
         private readonly store: Store,
         private readonly navigationService: NavigationService,
@@ -33,13 +27,13 @@ export class AppComponent implements OnInit {
 
     public async ngOnInit(): Promise<void> {
         this.loggerService.log("AppComponent#ngOnInit");
-        this._sideDrawerTransition = new SlideInOnTopTransition();
 
         await firebase.init({ persist: false });
     }
 
     public redirectAndCloseDrawer(url: string) {
         this.closeDrawer();
+        this.expandUserOptions = false;
         this.navigationService.navigate([url], { transition: { name: "slideLeft" } });
     }
 

@@ -3,34 +3,35 @@ RadSideDrawer is a UI component part of the Progress NativeScript UI set of comp
 Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
 https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
 -->
-<RadSideDrawer [drawerTransition]="sideDrawerTransition">
+<RadSideDrawer drawerTransition="PushTransition">
   <GridLayout tkDrawerContent rows="auto, auto, *, auto" class="sidedrawer sidedrawer-left">
     <GridLayout row="0" rows="auto" columns="*, 50" (tap)="toggleUserOptions()">
       <StackLayout row="0" col="0" class="sidedrawer-header">
-        <Label class="sidedrawer-header-image fas" text="&#xf2bd;"></Label>
-        <Label class="sidedrawer-header-brand" [text]="(currentUser$ | async)?.displayName ? (currentUser$ | async)?.displayName : '- - -'"></Label>
-        <Label class="footnote" [text]="(currentUser$ | async)?.email"></Label>
+        <Image *ngIf="(currentUser$ | async)?.photoURL" [src]="(currentUser$ | async)?.photoURL" class="sidedrawer-avatar"></Image>
+        <Label *ngIf="!(currentUser$ | async)?.photoURL" text="&#xf2bd;" class="sidedrawer-avatar sidedrawer-avatar--no-photo fas"></Label>
+        <Label class="sidedrawer-header-text" [text]="(currentUser$ | async)?.displayName ? (currentUser$ | async)?.displayName : '- - -'"></Label>
+        <Label class="sidedrawer-header-footnote" [text]="(currentUser$ | async)?.email"></Label>
       </StackLayout>
       <Label row="0" col="1" [text]="expandUserOptions ? '&#xf106;' : '&#xf107;'" class="fas user-options"></Label>
     </GridLayout>
 
     <StackLayout row="1" class="hr-light m-10"></StackLayout>
 
-    <StackLayout *ngIf="!expandUserOptions" row="2" class="sidedrawer-content">
+    <StackLayout *ngIf="!expandUserOptions" row="2">
       <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/inbox')">
-        <Label col="0" text="&#xf185;" class="far"></Label>
-        <Label col="1" text="Inbox" class="p-l-10"></Label>
+        <Label col="0" text="&#xf185;" class="far sidedrawer-icon"></Label>
+        <Label col="1" text="Inbox" class="p-l-10 sidedrawer-item"></Label>
       </GridLayout>
     </StackLayout>
 
-    <StackLayout *ngIf="expandUserOptions" row="2" class="sidedrawer-content">
+    <StackLayout *ngIf="expandUserOptions" row="2">
       <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/settings')">
-        <Label text="&#xf013;" class="fas"></Label>
-        <Label col="1" text="Settings" class="p-l-10"></Label>
+        <Label text="&#xf013;" class="fas sidedrawer-icon"></Label>
+        <Label col="1" text="Settings" class="p-l-10 sidedrawer-item"></Label>
       </GridLayout>
       <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="onLogOut()">
-        <Label text="&#xf2f5;" class="fas"></Label>
-        <Label col="1" text="Log out" class="p-l-10"></Label>
+        <Label text="&#xf2f5;" class="fas sidedrawer-icon"></Label>
+        <Label col="1" text="Log out" class="p-l-10 sidedrawer-item"></Label>
       </GridLayout>
     </StackLayout>
   </GridLayout>

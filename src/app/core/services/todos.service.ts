@@ -5,21 +5,18 @@ import { Todo } from "../models/models";
 import { TodosRepository } from "../repositories/todos.repository";
 import { Store } from "../state/app-store";
 import { ServerErrorHandlerService } from "./server-error-handler.service";
-import { LoggerService } from './logger.service';
+import { LoggerService } from "./logger.service";
 
-@Injectable()
-export class TodosRepoService {
+@Injectable({
+    providedIn: "root"
+})
+export class TodosService {
     private fetchedAllTodosList: boolean = false;
     private fetchedTodayTodosList: boolean = false;
 
-    constructor(
-        private repo: TodosRepository,
-        private store: Store,
-        private errorHandlerService: ServerErrorHandlerService,
-        private zone: NgZone,
-        private loggerService: LoggerService) {}
+    constructor(private repo: TodosRepository, private store: Store, private errorHandlerService: ServerErrorHandlerService, private zone: NgZone, private loggerService: LoggerService) {}
 
-    public fetchTodosList() {
+    public getTodosList() {
         if (this.fetchedAllTodosList) {
             return;
         }
@@ -38,7 +35,7 @@ export class TodosRepoService {
         });
     }
 
-    public fetchTodayTodosList() {
+    public getTodayTodosList() {
         if (this.fetchedTodayTodosList) {
             return;
         }
@@ -66,7 +63,7 @@ export class TodosRepoService {
         );
     }
 
-    public fetchTodoDetails(todoId) {
+    public getTodoDetails(todoId) {
         this.repo.getTodoDetails(todoId, this.errorHandlerService.handleFirestoreError, (docSnap: firestore.DocumentSnapshot) => {
             this.zone.run(() => {
                 if (docSnap.exists) {
