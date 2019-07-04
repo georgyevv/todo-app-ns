@@ -1,5 +1,5 @@
 <GridLayout columns="50, *, 40" rows="20, 20" class="todo">
-  <StackLayout (tap)="onToggleComplete(todo)" row="0" col="0" rowSpan="2" class="todo__complete">
+  <StackLayout (tap)="onToggleComplete()" row="0" col="0" rowSpan="2" class="todo__complete">
     <Label *ngIf="!todo.isCompleted" text="&#xf111;" class="far"> </Label>
     <Label *ngIf="todo.isCompleted" text="&#xf058;" class="fas completed"> </Label>
   </StackLayout>
