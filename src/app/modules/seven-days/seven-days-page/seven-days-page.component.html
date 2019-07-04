@@ -4,4 +4,83 @@
   <Label class="action-bar-title" text="Next 7 days"></Label>
 </ActionBar>
 
-<ns-todo-list [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+<AbsoluteLayout width="100%" height="100%">
+  <StackLayout width="100%" height="100%">
+    <GridLayout rows="*, 120" columns="*">
+      <ScrollView row="0" col="0" *ngIf="(todos$ | async)?.length > 0">
+        <StackLayout orientation="vertical">
+          <!-- TODAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label text="Today" class="header__text" [ngClass]="{ 'header_text--active': (todayTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="todayDate | friendlyDate: 'weekDayMonthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="todayTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- TOMORROW -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label text="Tomorrow" class="header__text" [ngClass]="{ 'header_text--active': (tomorrowTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="tommorowDate | friendlyDate: 'weekDayMonthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="tomorrowTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- 3RD DAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label [text]="thirdDayDate | friendlyDate: 'fullDayOfWeek'" class="header__text" [ngClass]="{ 'header_text--active': (thirdDayTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="thirdDayDate | friendlyDate: 'monthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="thirdDayTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- 4TH DAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label [text]="fourthDayDate | friendlyDate: 'fullDayOfWeek'" class="header__text" class="header__text" [ngClass]="{ 'header_text--active': (fourthTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="fourthDayDate | friendlyDate: 'monthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="fourthTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- 5TH DAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label [text]="fiftDayDate | friendlyDate: 'fullDayOfWeek'" class="header__text" [ngClass]="{ 'header_text--active': (fifthTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="fiftDayDate | friendlyDate: 'monthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="fifthTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- 6TH DAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label [text]="sixthDayDate | friendlyDate: 'fullDayOfWeek'" class="header__text" [ngClass]="{ 'header_text--active': (sixthTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="sixthDayDate | friendlyDate: 'monthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="sixthTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+          <!-- 7TH DAY -->
+          <StackLayout height="60" orientation="horizontal">
+            <Label [text]="seventhDayDate | friendlyDate: 'fullDayOfWeek'" class="header__text" [ngClass]="{ 'header_text--active': (seventhTodos$ | async)?.length > 0 }"></Label>
+            <Label [text]="seventhDayDate | friendlyDate: 'monthDay'" class="header__date"></Label>
+          </StackLayout>
+          <StackLayout height="1" width="95%" backgroundColor="LightGray"></StackLayout>
+          <ns-todo-list [todoItems]="seventhTodos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+        </StackLayout>
+      </ScrollView>
+
+      <StackLayout row="1" col="0" *ngIf="showAddTodo">
+        <ns-add-todo (addTodo)="onAddTodo($event)" [defaultDueDate]="todayDate"></ns-add-todo>
+      </StackLayout>
+    </GridLayout>
+  </StackLayout>
+
+  <Border [ngClass]="{ hidden: showAddTodo }" #addTodoButton (tap)="onAddTodoAction()" class="add-todo-action" width="50" height="50" cornerRadius="100">
+    <Label text="&#xf067;" class="fas add-todo-action__icon"></Label>
+  </Border>
+
+  <GridLayout *ngIf="(todos$ | async)?.length == 0" rows="*" columns="*" width="100%" height="100%">
+    <StackLayout row="0" col="0" class="no-items">
+      <Label class="no-items__header" text="Get a bird's eye view of your week"></Label>
+      <Label class="no-items__text" text="This is your timeline for the next 7 days."></Label>
+    </StackLayout>
+  </GridLayout>
+</AbsoluteLayout>

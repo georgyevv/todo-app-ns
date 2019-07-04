@@ -8,7 +8,7 @@ export class FriendlyDatePipe implements PipeTransform {
 
     private weekdays: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    public transform(date: Date, type: "due" | "dayOfWeek" | "friendly" = "due") {
+    public transform(date: Date, type: "due" | "dayOfWeek" | "fullDayOfWeek" | "friendly" | "monthDay" | "weekDayMonthDay" = "due") {
         if (date === null || date === undefined) {
             return date;
         }
@@ -29,10 +29,6 @@ export class FriendlyDatePipe implements PipeTransform {
             return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         }
 
-        if (type == "dayOfWeek") {
-            return `${this.weekdays[date.getDay()].substr(0, 3)}`;
-        }
-
         if (type == "friendly") {
             if (this.areDaysEqual(date, currentDate) && date.getMinutes() == currentDate.getMinutes()) {
                 return "a few moments ago";
@@ -43,6 +39,26 @@ export class FriendlyDatePipe implements PipeTransform {
             }
 
             return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        }
+
+        if (type == "dayOfWeek") {
+            // Fri
+            return `${this.weekdays[date.getDay()].substr(0, 3)}`;
+        }
+
+        if (type == "fullDayOfWeek") {
+            // Friday
+            return `${this.weekdays[date.getDay()]}`;
+        }
+
+        if (type == "monthDay") {
+            // Jul 21
+            return `${this.monthNames[date.getMonth()]} ${date.getDate()}`;
+        }
+
+        if (type == "weekDayMonthDay") {
+            // Fri, Jul 21
+            return `${this.weekdays[date.getDay()].substr(0, 3)}, ${this.monthNames[date.getMonth()]} ${date.getDate()}`;
         }
 
         return date;

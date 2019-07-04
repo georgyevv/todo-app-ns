@@ -6,3 +6,48 @@
     color: white;
     z-index: 0;
 }
+
+.header__text {
+    font-size: $large-size;
+    color: $normal-text-color;
+    font-weight: bold;
+    vertical-align: center;
+    margin: 10;
+}
+
+.header__date {
+    font-size: $medium-size;
+    vertical-align: center;
+}
+
+.add-todo-action {
+    background-color: $main-color;
+}
+
+.add-todo-action__icon {
+    text-align: center;
+    vertical-align: center;
+    font-size: $large-size;
+    color: white;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.no-items {
+    vertical-align: center;
+    text-align: center;
+}
+
+.no-items__header {
+    font-size: $large-size;
+}
+
+.no-items__description {
+    font-size: $medium-size;
+}
+
+.no-items__help {
+    font-size: $medium-size;
+}

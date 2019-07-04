@@ -1,19 +1,5 @@
 @import '../../../../app-variables';
 
-.add-todo-action {
-  background-color: $main-color;
-}
-.add-todo-action__icon {
-  text-align: center;
-  vertical-align: center;
-  font-size: $large-size;
-  color: white;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
 .remove-today {
   vertical-align: center;
   background-color: blue;
@@ -37,18 +23,4 @@
   width: 100;
   font-weight: bold;
   color: white;
-}
-
-.no-items {
-  vertical-align: center;
-  text-align: center;
-}
-.no-items__header {
-  font-size: $large-size;
-}
-.no-items__description {
-  font-size: $medium-size;
-}
-.no-items__help {
-  font-size: $medium-size;
 }

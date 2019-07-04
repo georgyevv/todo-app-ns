@@ -4,4 +4,26 @@
   <Label class="action-bar-title" text="Inbox"></Label>
 </ActionBar>
 
-<ns-todo-list [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+<AbsoluteLayout>
+  <StackLayout width="100%" height="100%">
+    <GridLayout rows="*, 120" columns="*">
+      <ns-todo-list row="0" col="0" [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+      <StackLayout row="1" col="0" *ngIf="showAddTodo">
+        <ns-add-todo (addTodo)="onAddTodo($event)"></ns-add-todo>
+      </StackLayout>
+    </GridLayout>
+  </StackLayout>
+
+  <Border [ngClass]="{ hidden: showAddTodo }" #addTodoButton (tap)="onAddTodoAction()" class="add-todo-action" width="50" height="50" cornerRadius="100">
+    <Label text="&#xf067;" class="fas add-todo-action__icon"></Label>
+  </Border>
+
+  <GridLayout *ngIf="(todos$ | async)?.length == 0" rows="*" columns="*" width="100%" height="100%">
+    <StackLayout row="0" col="0" class="no-items">
+      <Label class="no-items__header" text="All clear"></Label>
+      <Label class="no-items__text" text="Looks like everything's organized in the right place."></Label>
+      <Label class="no-items__text" text="Tap + to add a task"></Label>
+    </StackLayout>
+  </GridLayout>
+</AbsoluteLayout>

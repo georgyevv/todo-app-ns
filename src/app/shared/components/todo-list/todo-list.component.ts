@@ -1,10 +1,7 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 import { ListViewEventData } from "nativescript-ui-listview";
 import { RadListViewComponent } from "nativescript-ui-listview/angular/listview-directives";
-import { screen } from "tns-core-modules/platform";
-import { Button } from "tns-core-modules/ui/button";
 import { View } from "tns-core-modules/ui/core/view/view";
-import { AbsoluteLayout } from "tns-core-modules/ui/layouts/absolute-layout";
 import { confirm, ConfirmOptions } from "tns-core-modules/ui/dialogs";
 
 import { Todo } from "../../../core/models/models";
@@ -17,36 +14,15 @@ import { TodosService } from "../../../core/services/todos.service";
     styleUrls: ["./todo-list.component.scss"],
     moduleId: module.id
 })
-export class TodoListComponent implements AfterViewInit {
-    public showAddTodo: boolean = false;
-
-    @ViewChild("addTodoButton", { static: true }) addTodoButton: ElementRef;
+export class TodoListComponent {
     @ViewChild("myListView", { read: RadListViewComponent, static: false }) myListViewComponent: RadListViewComponent;
 
     @Input() todoItems: Todo[];
-    @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
     constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosService) {}
 
-    public ngAfterViewInit() {
-        const button = <Button>this.addTodoButton.nativeElement;
-        // This is not okay must be changes (150) is for the top navigation which is included in the heightDIP i guess
-        AbsoluteLayout.setTop(button, screen.mainScreen.heightDIPs - Number(button.height) - 150);
-        // This is not okay must be changes (20) wtf is 20 ? margin righ - MAGIN NUMBER
-        AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 20);
-    }
-
     public onItemTap(id: number) {
         this.navigationService.navigate(["/todo-details/", id], { transition: { name: "slideLeft" } });
-    }
-
-    public onAddTodoAction() {
-        this.showAddTodo = true;
-    }
-
-    public onAddTodo(todo: Todo) {
-        this.addTodo.emit(todo);
-        this.showAddTodo = false;
     }
 
     public onToggleFavourite(todo: Todo) {
