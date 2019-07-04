@@ -52,6 +52,9 @@ export class TodosService {
         if (!todo.priority) {
             todo.priority = 3; //This will be a default value
         }
+        if (!todo.project) {
+            todo.project = "Inbox";
+        }
 
         todo.createdOn = new Date();
         todo.modifiedOn = new Date();

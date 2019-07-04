@@ -33,6 +33,7 @@
 
 .selected-option {
   width: auto;
+  height: 30;
   background-color: $main-color;
   vertical-align: center;
   text-align: center;
@@ -43,11 +44,11 @@
 .selected-option__icon {
   font-size: $medium-size;
   color: white;
-  margin-right: 5;
   vertical-align: center;
   text-align: center;
 }
 .selected-option__text {
   font-size: $medium-size;
   color: white;
+  margin-left: 5;
 }

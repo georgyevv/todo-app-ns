@@ -7,6 +7,8 @@ import { DuedateModalComponent } from '../../modals/duedate-modal/duedate-modal.
 import { PrioritiesModalComponent } from '../../modals/priorities-modal/priorities-modal.component';
 import { ParentModalComponent } from '../../modals/parent-modal/parent-modal.component';
 import { Todo } from '~/app/core/models/models';
+import { GenericInputModalComponent } from '../../modals/generic-input-modal/generic-input-modal.component';
+import { LabelsModalComponent } from '../../modals/labels-modal/labels-modal.component';
 
 @Component({
     selector: "ns-add-todo",
@@ -68,10 +70,26 @@ export class AddTodoComponent implements OnInit {
         this.todo.priority = undefined;
     }
 
+    public async onOpenLabelsModal() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.viewContainerRef,
+            context: { selectedLabels: this.todo.labels },
+            fullscreen: false
+        };
+        const labels = await this.modalService.showModal(LabelsModalComponent, options);
+        if (labels !== undefined) {
+            this.todo.labels = labels;
+        }
+    }
+
+    public onRemoveLabels() {
+        this.todo.labels = undefined;
+    }
+
     public async onOpenParentModal() {
         const options: ModalDialogOptions = {
             viewContainerRef: this.viewContainerRef,
-            context: {},
+            context: { currentItem: this.todo },
             fullscreen: false
         };
         const parent = await this.modalService.showModal(ParentModalComponent, options);
@@ -83,6 +101,34 @@ export class AddTodoComponent implements OnInit {
 
     public onRemoveParent() {
         this.todo.parent = undefined;
+    }
+
+    public async onOpenDescriptionModal() {
+        const options: ModalDialogOptions = {
+            viewContainerRef: this.viewContainerRef,
+            context: {
+                title: "Description",
+                isTextView: true,
+                text: this.todo.description
+            },
+            fullscreen: true
+        };
+        const description = await this.modalService.showModal(GenericInputModalComponent, options);
+        if (description !== undefined) {
+            this.todo.description = description;
+        }
+    }
+
+    public onRemoveDescription() {
+        this.todo.description = undefined;
+    }
+
+    public async onOpenReminderModal(){
+
+    }
+
+    public onRemoveReminder() {
+        this.todo.reminder = undefined;
     }
 
     public onAddTodo() {

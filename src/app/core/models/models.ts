@@ -1,3 +1,5 @@
+export type Project = "Inbox" | "Personal" | "Shopping" | "Work" | "Errands" | "Movies to watch";
+
 export class Todo {
     constructor(
         public id: string,
@@ -15,7 +17,12 @@ export class Todo {
         public dueDate: Date,
         public priority: number,
         public parent: Todo,
-    ) {}
+        public project: Project,
+        public labels: string[],
+        public reminder: Date
+    ) {
+        this.labels = [];
+    }
 }
 
 export enum RepeatType {
@@ -28,16 +35,9 @@ export enum RepeatType {
 }
 
 export class LoginUser {
-    constructor(
-        public email: string,
-        public password: string
-    ) {}
+    constructor(public email: string, public password: string) {}
 }
 
 export class RegisterUser {
-    constructor(
-        public email: string,
-        public password: string,
-        public confirmPassword: string
-    ) {}
+    constructor(public email: string, public password: string, public confirmPassword: string) {}
 }

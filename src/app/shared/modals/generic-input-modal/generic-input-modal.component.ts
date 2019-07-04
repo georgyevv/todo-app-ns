@@ -10,12 +10,14 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 export class GenericInputModalComponent {
     public title: string;
     public text: string;
-    public isPassword: boolean = false;
+    public isPassword: boolean;
+    public isTextView: boolean;
 
     constructor(private params: ModalDialogParams) {
         this.title = this.params.context.title;
         this.text = this.params.context.text;
         this.isPassword = this.params.context.isPassword;
+        this.isTextView = this.params.context.isTextView;
     }
 
     public onSave() {
@@ -23,6 +25,6 @@ export class GenericInputModalComponent {
     }
 
     public onCancel() {
-        this.params.closeCallback();
+        this.params.closeCallback(undefined);
     }
 }

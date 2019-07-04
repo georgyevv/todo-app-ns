@@ -1,7 +1,8 @@
-<StackLayout width="350">
+<StackLayout width="100%" minWidth="350">
   <Label [text]="title" class="h2" marginLeft="20" marginTop="10" marginBottom="20"></Label>
 
-  <TextField [(ngModel)]="text" required #textField="ngModel" marginLeft="20" marginRight="20" [secure]="isPassword"></TextField>
+  <TextField *ngIf="!isTextView" [(ngModel)]="text" marginLeft="20" marginRight="20" [secure]="isPassword"></TextField>
+  <TextView *ngIf="isTextView" [(ngModel)]="text" marginLeft="20" marginRight="20" ></TextView>
 
   <FlexboxLayout justifyContent="flex-end" class="actions" orientation="horizontal">
     <Button text="CLOSE"
@@ -9,8 +10,8 @@
             (tap)="onCancel()"></Button>
     <Button text="OK"
             class="button-disabled"
-            [ngClass]="{'action-button': textField.valid}"
+            [ngClass]="{'action-button': text?.length > 0 }"
             (tap)="onSave()"
-            [isEnabled]="textField.valid"></Button>
+            [isEnabled]="text?.length > 0"></Button>
   </FlexboxLayout>
 </StackLayout>

@@ -8,9 +8,9 @@
         <TextField [(ngModel)]="todo.title" class="header__text"></TextField>
       </StackLayout>
 
-      <StackLayout class="header__item">
+      <StackLayout class="header__item" (tap)="onOpenProjectModal()">
         <Label text="Project" class="header__title"></Label>
-        <Label text="Inbox"></Label>
+        <Label [text]="todo.project"></Label>
       </StackLayout>
     </StackLayout>
 
@@ -28,9 +28,9 @@
       </StackLayout>
 
       <Label text="&#xf02c;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="2" col="0"></Label>
-      <StackLayout row="2" col="1" class="m-b-25">
+      <StackLayout row="2" col="1" class="m-b-25" (tap)="onOpenLabelsModal()">
         <Label text="Labels" class="font-weight-bold"></Label>
-        <Label text="No label"></Label>
+        <Label [text]="todo.labels?.length > 0 ? todo.labels.join(', ') : 'No labels'"></Label>
       </StackLayout>
 
       <Label text="&#xf550;" class="fas option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="3" col="0"></Label>
@@ -40,9 +40,9 @@
       </StackLayout>
 
       <Label text="&#xf075;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="4" col="0"></Label>
-      <StackLayout row="4" col="1" class="m-b-25">
-        <Label text="Comments" class="font-weight-bold"></Label>
-        <Label text="No comments"></Label>
+      <StackLayout row="4" col="1" class="m-b-25" (tap)="onOpenDetailsModal()">
+        <Label text="Description" class="font-weight-bold"></Label>
+        <Label [text]="todo.description ? todo.description : 'No description'"></Label>
       </StackLayout>
 
       <Label text="&#xf017;" class="far option__icon m-b-25 m-r-10" verticalAlignment="center" horizontalAlignment="center" row="5" col="0"></Label>

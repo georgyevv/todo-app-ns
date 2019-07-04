@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { LabelsModalComponent } from './modals/labels-modal/labels-modal.component';
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
@@ -13,6 +14,7 @@ import { ParentModalComponent } from './modals/parent-modal/parent-modal.compone
 import { DatepickerModalComponent } from './modals/datepicker-modal/datepicker-modal.component';
 import { LoadingModalComponent } from './modals/loading-modal/loading-modal.component';
 import { GenericInputModalComponent } from './modals/generic-input-modal/generic-input-modal.component';
+import { NativeScriptUIAutoCompleteTextViewModule } from 'nativescript-ui-autocomplete/angular/autocomplete-directives';
 
 @NgModule({
     declarations: [
@@ -26,10 +28,12 @@ import { GenericInputModalComponent } from './modals/generic-input-modal/generic
         DatepickerModalComponent,
         LoadingModalComponent,
         GenericInputModalComponent,
+        LabelsModalComponent,
     ],
     imports: [
         NativeScriptCommonModule,
         NativeScriptUIListViewModule,
+        NativeScriptUIAutoCompleteTextViewModule,
         NativeScriptFormsModule,
     ],
     exports: [
@@ -43,6 +47,7 @@ import { GenericInputModalComponent } from './modals/generic-input-modal/generic
         DatepickerModalComponent,
         LoadingModalComponent,
         GenericInputModalComponent,
+        LabelsModalComponent,
     ],
     entryComponents: [
         DuedateModalComponent,
@@ -51,6 +56,7 @@ import { GenericInputModalComponent } from './modals/generic-input-modal/generic
         DatepickerModalComponent,
         LoadingModalComponent,
         GenericInputModalComponent,
+        LabelsModalComponent,
     ],
     schemas: [NO_ERRORS_SCHEMA]
 })

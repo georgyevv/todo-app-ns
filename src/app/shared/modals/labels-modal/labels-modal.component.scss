@@ -1,0 +1,42 @@
+/* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
+.close-button {
+    z-index: 0;
+    color: $main-color;
+    background-color: white;
+}
+
+.container {
+    font-size: $medium-size;
+}
+
+.add-label__icon {
+    font-size: $large-size;
+    width: 40;
+    background-color: white;
+    z-index: 0;
+    text-align: center;
+    vertical-align: center;
+}
+.add-label__icon--valid {
+    color: $main-color;
+}
+
+.label__item {
+    border-radius: 100;
+    background-color: $main-color;
+    color: white;
+    padding: 5 10;
+    margin-top: 10;
+    margin-right: 10;
+    text-align: center;
+    vertical-align: center;
+    height: 36;
+}
+
+.label__icon {
+    text-align: center;
+    vertical-align: center;
+    margin-left: 5;
+}

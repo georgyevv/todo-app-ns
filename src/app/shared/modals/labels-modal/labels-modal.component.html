@@ -1,0 +1,22 @@
+<StackLayout width="100%" class="container" paddingLeft="10" paddingRight="10">
+  <Label text="Labels" class="h2" marginLeft="20" marginTop="10" marginBottom="20"></Label>
+
+  <FlexboxLayout width="100%" marginLeft="10" marginRight="10">
+    <TextField [(ngModel)]="newLabel" #labelField="ngModel" required flexGrow="1"></TextField>
+    <Button (tap)="onAddNewLabel()" [isEnabled]="labelField.valid" text="&#xf067;" class="fas add-label__icon" [ngClass]="{'add-label__icon--valid': labelField.valid}"></Button>
+  </FlexboxLayout>
+
+  <WrapLayout orientation="horizontal" width="100%" marginLeft="10" marginRight="10">
+    <StackLayout *ngFor="let label of selectedLabels" class="label__item" orientation="horizontal" (tap)="onRemoveLabel(label)">
+      <Label [text]="label"></Label>
+      <Label text="&#xf00d;" class="fas label__icon"></Label>
+    </StackLayout>
+  </WrapLayout>
+
+  <StackLayout class="hr-light m-t-5"></StackLayout>
+
+  <FlexboxLayout justifyContent="flex-end" class="actions" orientation="horizontal">
+      <Button text="CLOSE" class="close-button" (tap)="onCancel()"></Button>
+      <Button text="SAVE" class="close-button" (tap)="onSave()"></Button>
+    </FlexboxLayout>
+</StackLayout>
