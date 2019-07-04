@@ -30,6 +30,7 @@ export class DetailsPageComponent implements OnInit {
     }
 
     public onSave(todo: Todo) {
+        console.log(todo);
         this.todosRepoService.updateTodo(todo);
         this.goBack();
     }

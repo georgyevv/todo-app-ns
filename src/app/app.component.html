@@ -1,8 +1,3 @@
-<!--
-RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
-Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
-https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
--->
 <RadSideDrawer drawerTransition="PushTransition">
   <GridLayout tkDrawerContent rows="auto, auto, *, auto" class="sidedrawer sidedrawer-left">
     <GridLayout row="0" rows="auto" columns="*, 50" (tap)="toggleUserOptions()">
@@ -19,8 +14,18 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
 
     <StackLayout *ngIf="!expandUserOptions" row="2">
       <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/inbox')">
-        <Label col="0" text="&#xf185;" class="far sidedrawer-icon"></Label>
+        <Label col="0" text="&#xf01c;" class="fas sidedrawer-icon"></Label>
         <Label col="1" text="Inbox" class="p-l-10 sidedrawer-item"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/today')">
+        <Label col="0" text="&#xf185;" class="far sidedrawer-icon"></Label>
+        <Label col="1" text="Today" class="p-l-10 sidedrawer-item"></Label>
+      </GridLayout>
+
+      <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="redirectAndCloseDrawer('/seven-days')">
+        <Label col="0" text="&#xf073;" class="far sidedrawer-icon"></Label>
+        <Label col="1" text="Next 7 days" class="p-l-10 sidedrawer-item"></Label>
       </GridLayout>
     </StackLayout>
 

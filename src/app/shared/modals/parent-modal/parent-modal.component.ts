@@ -27,10 +27,10 @@ export class ParentModalComponent {
     }
 
     public onNoParent() {
-        this.params.closeCallback(undefined);
+        this.params.closeCallback(null);
     }
 
     public onCancel() {
-        this.params.closeCallback(null);
+        this.params.closeCallback(undefined);
     }
 }

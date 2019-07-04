@@ -1,27 +1,45 @@
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
+import { map } from "rxjs/operators";
 
 import { Todo } from "~/app/core/models/models";
 import { TodosService } from "~/app/core/services/todos.service";
 import { Store } from "~/app/core/state/app-store";
-import { LoggerService } from '~/app/core/services/logger.service';
+import { LoggerService } from "~/app/core/services/logger.service";
 
 @Component({
-    selector: "ns-inbox-page",
-    templateUrl: "./inbox-page.component.html",
-    styleUrls: ["./inbox-page.component.scss"],
+    selector: "ns-today-page",
+    templateUrl: "./today-page.component.html",
+    styleUrls: ["./today-page.component.scss"],
     moduleId: module.id
 })
-export class InboxPageComponent implements OnInit, AfterViewInit {
-    public todos$ = this.store.select<Todo[]>("allTodos");
+export class TodayPageComponent implements OnInit, AfterViewInit {
+    public todos$ = this.store.select<Todo[]>("allTodos").pipe(
+        map((todo: Todo[]) => {
+            if (todo.length == 0) {
+                return [];
+            }
+
+            const todayTodos = todo.filter((todo: Todo) => {
+                if (!todo.dueDate) {
+                    return;
+                }
+
+                const currentDate = new Date();
+                return todo.dueDate.getDate() == currentDate.getDate();
+            });
+
+            return todayTodos;
+        })
+    );
 
     constructor(private store: Store, private todoRepoService: TodosService, private readonly loggerService: LoggerService) {
         this.store.set("showSpinner", true);
     }
 
     public ngOnInit() {
-        this.loggerService.log("InboxPageComponent#ngOnInit");
+        this.loggerService.log("TodayPageComponent#ngOnInit");
         this.todoRepoService.getTodosList();
     }
 

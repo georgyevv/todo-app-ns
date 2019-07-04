@@ -54,7 +54,7 @@
 
     <StackLayout alignSelf="flex-end" class="remove-details">
       <GridLayout columns="*, 40" rows="*">
-        <Label [text]="'Updated a few moments ago'" class="remove-details__text" row="0" col="0"> </Label>
+        <Label [text]="'Modified ' + (todo.modifiedOn | friendlyDate:'friendly')" class="remove-details__text" row="0" col="0"> </Label>
         <Label (tap)="onDelete()" text="&#xf2ed;" class="far remove-details__icon" row="0" col="1"> </Label>
       </GridLayout>
     </StackLayout>

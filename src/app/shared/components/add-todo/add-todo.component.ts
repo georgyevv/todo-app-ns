@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit, ViewContainerRef } from "@angular/core";
+import { Component, EventEmitter, Output, OnInit, ViewContainerRef, Input } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 var utils = require("tns-core-modules/utils/utils");
 
@@ -17,6 +17,9 @@ import { Todo } from '~/app/core/models/models';
 export class AddTodoComponent implements OnInit {
     public todo: Todo;
 
+    @Input() set defaultDueDate(dueDate: Date) {
+        this.todo.dueDate = dueDate;
+    };
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
     constructor(

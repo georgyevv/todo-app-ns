@@ -12,6 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { DetailsModule } from './modules/details/details.module';
 import { SettingsModule } from './modules/settings/settings.module';
+import { TodayModule } from './modules/today/today.module';
+import { SevenDaysModule } from './modules/seven-days/seven-days.module';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -29,6 +31,8 @@ import { SettingsModule } from './modules/settings/settings.module';
         DetailsModule,
         CoreModule,
         InboxModule,
+        TodayModule,
+        SevenDaysModule,
         SearchModule,
         SettingsModule,
         AppRoutingModule,

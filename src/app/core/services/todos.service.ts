@@ -12,7 +12,6 @@ import { LoggerService } from "./logger.service";
 })
 export class TodosService {
     private fetchedAllTodosList: boolean = false;
-    private fetchedTodayTodosList: boolean = false;
 
     constructor(private repo: TodosRepository, private store: Store, private errorHandlerService: ServerErrorHandlerService, private zone: NgZone, private loggerService: LoggerService) {}
 
@@ -30,37 +29,9 @@ export class TodosService {
                     todos.push(todo);
                 });
                 this.store.set("allTodos", todos);
-                this.fetchedAllTodosList = true;
             });
         });
-    }
-
-    public getTodayTodosList() {
-        if (this.fetchedTodayTodosList) {
-            return;
-        }
-
-        this.repo.getTodoList(
-            this.errorHandlerService.handleFirestoreError,
-            (snapshot: firestore.QuerySnapshot) => {
-                this.zone.run(() => {
-                    const todos = [];
-                    snapshot.forEach(docSnap => {
-                        const todo: Todo = <Todo>docSnap.data();
-                        todo.id = docSnap.id;
-                        todos.push(todo);
-                    });
-
-                    this.store.set("todayTodos", todos);
-                    this.fetchedTodayTodosList = true;
-                });
-            },
-            {
-                fieldPath: "isAddedToToday",
-                opStr: "==",
-                value: true
-            }
-        );
+        this.fetchedAllTodosList = true;
     }
 
     public getTodoDetails(todoId) {
@@ -70,20 +41,28 @@ export class TodosService {
                     const todo: Todo = <Todo>docSnap.data();
                     todo.id = docSnap.id;
                     this.store.set("selectedTodo", todo);
+                } else {
+                    this.loggerService.error("The searched todo doesn't exists!");
                 }
-
-                this.loggerService.error("The searched todo doesn't exists!");
             });
         });
     }
 
     public addTodo(todo: Todo) {
+        if (!todo.priority) {
+            todo.priority = 3; //This will be a default value
+        }
+
+        todo.createdOn = new Date();
+        todo.modifiedOn = new Date();
+
         this.repo.addTodo(todo, this.errorHandlerService.handleFirestoreError, (querySnapshot: firestore.DocumentReference) => {
             this.loggerService.log("Added todo");
         });
     }
 
     public updateTodo(todo: Todo) {
+        todo.modifiedOn = new Date();
         this.repo.updateTodo(todo, this.errorHandlerService.handleFirestoreError, () => {
             this.loggerService.log("Updated todo");
         });

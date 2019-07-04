@@ -15,6 +15,6 @@ export class PrioritiesModalComponent {
     }
 
     public onCancel() {
-        this.params.closeCallback(null);
+        this.params.closeCallback(undefined);
     }
 }

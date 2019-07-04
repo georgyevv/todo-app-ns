@@ -43,7 +43,9 @@ export class DetailsFormComponent {
             fullscreen: false
         };
         const dueDate = await this.modalService.showModal(DuedateModalComponent, options);
-        if (dueDate !== null) {
+        console.log("due date: " + dueDate);
+        if (dueDate !== undefined) {
+            console.log("set due date: " + dueDate);
             this.todo.dueDate = dueDate;
         }
     }
@@ -55,7 +57,7 @@ export class DetailsFormComponent {
             fullscreen: false
         };
         const priority = await this.modalService.showModal(PrioritiesModalComponent, options);
-        if (priority !== null) {
+        if (priority !== undefined) {
             this.todo.priority = priority;
         }
     }
@@ -67,7 +69,7 @@ export class DetailsFormComponent {
             fullscreen: false
         };
         const parent = await this.modalService.showModal(ParentModalComponent, options);
-        if (parent !== null) {
+        if (parent !== undefined) {
             this.todo.parent = parent;
         }
     }

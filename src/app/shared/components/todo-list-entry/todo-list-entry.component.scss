@@ -2,33 +2,28 @@
 @import '../../../../app-variables';
 
 .todo {
-  padding: 10 0;
+  padding: 10 10;
   height: 100%;
   background-color: white;
 }
-
 .todo__complete {
-  text-align: center;
+  text-align: left;
   vertical-align: center;
-  font-size: $extra-large-size;
+  font-size: $extra-extra-large-size;
 }
-
 .todo__favourite {
   text-align: center;
   vertical-align: center;
   font-size: $extra-large-size;
 }
-
 .todo__title {
   font-size: $medium-size;
   font-weight: bold;
   vertical-align: center;
 }
-
 .todo__title--strike {
   text-decoration: line-through;
 }
-
 .todo__description {
   font-size: $small-size;
   font-weight: normal;

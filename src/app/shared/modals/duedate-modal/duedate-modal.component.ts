@@ -52,10 +52,10 @@ export class DuedateModalComponent {
     }
 
     public onNoDate() {
-        this.params.closeCallback(undefined);
+        this.params.closeCallback(null);
     }
 
     public onCancel() {
-        this.params.closeCallback(null);
+        this.params.closeCallback(undefined);
     }
 }
