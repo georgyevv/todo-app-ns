@@ -6,7 +6,7 @@ import { RadDataFormComponent } from "nativescript-ui-dataform/angular/dataform-
 @Component({
     selector: "ns-login-form",
     templateUrl: "./login-form.component.html",
-    styleUrls: ["./login-form.component.css"],
+    styleUrls: ["./login-form.component.scss"],
     moduleId: module.id,
     changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,0 +1,8 @@
+/* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
+.action-bar {
+    background-color: $main-color;
+    border-color: $main-color;
+    z-index: 0;
+}

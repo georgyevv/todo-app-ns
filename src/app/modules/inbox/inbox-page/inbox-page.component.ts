@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 
@@ -10,10 +10,10 @@ import { LoggerService } from '~/app/core/services/logger.service';
 @Component({
     selector: "ns-inbox-page",
     templateUrl: "./inbox-page.component.html",
-    styleUrls: ["./inbox-page.component.css"],
+    styleUrls: ["./inbox-page.component.scss"],
     moduleId: module.id
 })
-export class InboxPageComponent implements OnInit {
+export class InboxPageComponent implements OnInit, AfterViewInit {
     public todos$ = this.store.select<Todo[]>("allTodos");
 
     constructor(private store: Store, private todoRepoService: TodosService, private readonly loggerService: LoggerService) {
@@ -25,7 +25,7 @@ export class InboxPageComponent implements OnInit {
         this.todoRepoService.getTodosList();
     }
 
-    public onTodoListLoad() {
+    public ngAfterViewInit() {
         this.store.set("showSpinner", false);
     }
 

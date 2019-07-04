@@ -1,4 +1,6 @@
 /* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
 .container {
     padding: 10;
 }
@@ -6,12 +8,12 @@
 .activity-indicator {
     text-align: left;
     vertical-align: center;
-    color: coral;
+    color: $main-color;
     margin-right: 20;
 }
 
 .loading-text{
     vertical-align: center;
     text-align: left;
-    color: coral;
+    color: $main-color;
 }

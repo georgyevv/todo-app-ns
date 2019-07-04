@@ -1,5 +1,7 @@
+@import '../../../../app-variables';
+
 .add-todo {
-  border-top-color: coral;
+  border-top-color: $main-color;
   border-top-width: 1;
   background-color: white;
   padding: 10;
@@ -10,28 +12,28 @@
 .add-todo__send {
   text-align: center;
   vertical-align: center;
-  font-size: 26;
+  font-size: $extra-large-size;
   background-color: white;
   z-index: 0
 }
 .add-todo__send--valid {
-  color: coral;
+  color: $main-color;
 }
 
 .options {
   margin-top: 20;
 }
 .option__icon {
-  font-size: 24;
+  font-size: $extra-large-size;
   margin-right: 30;
 }
 .option__icon--active {
-  color: coral;
+  color: $main-color;
 }
 
 .selected-option {
   width: auto;
-  background-color: coral;
+  background-color: $main-color;
   vertical-align: center;
   text-align: center;
   padding: 5;
@@ -39,13 +41,13 @@
   border-radius: 5;
 }
 .selected-option__icon {
-  font-size: 16;
+  font-size: $medium-size;
   color: white;
   margin-right: 5;
   vertical-align: center;
   text-align: center;
 }
 .selected-option__text {
-  font-size: 16;
+  font-size: $medium-size;
   color: white;
 }

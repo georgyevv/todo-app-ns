@@ -4,7 +4,7 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 @Component({
     selector: "ns-generic-input-modal",
     templateUrl: "./generic-input-modal.component.html",
-    styleUrls: ["./generic-input-modal.component.css"],
+    styleUrls: ["./generic-input-modal.component.scss"],
     moduleId: module.id
 })
 export class GenericInputModalComponent {

@@ -1,4 +1,6 @@
 /* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
 .todo {
   padding: 10 0;
   height: 100%;
@@ -8,17 +10,17 @@
 .todo__complete {
   text-align: center;
   vertical-align: center;
-  font-size: 26;
+  font-size: $extra-large-size;
 }
 
 .todo__favourite {
   text-align: center;
   vertical-align: center;
-  font-size: 26;
+  font-size: $extra-large-size;
 }
 
 .todo__title {
-  font-size: 16;
+  font-size: $medium-size;
   font-weight: bold;
   vertical-align: center;
 }
@@ -28,7 +30,7 @@
 }
 
 .todo__description {
-  font-size: 12;
+  font-size: $small-size;
   font-weight: normal;
 }
 
@@ -37,5 +39,5 @@
 }
 
 .favourite {
-  color: coral;
+  color: $main-color;
 }

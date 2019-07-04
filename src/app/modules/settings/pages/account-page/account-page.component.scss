@@ -1,7 +1,9 @@
 /* Add mobile styles for the component here.  */
+@import '../../../../../app-variables';
+
 .action-bar {
-    background-color: coral;
-    border-color: coral;
+    background-color: $main-color;
+    border-color: $main-color;
     color: white;
     z-index: 0;
 }
@@ -10,21 +12,21 @@
     padding: 20;
 }
 .account__title {
-    font-size: 16;
-    color: black;
+    font-size: $medium-size;
+    color: $normal-text-color;
     margin-bottom: 5;
 }
 .account__details {
-    font-size: 14;
+    font-size: $small-size;
     color: gray;
 }
 
 .delete__icon {
-    font-size: 16;
+    font-size: $medium-size;
     vertical-align: center;
     text-align: center;
     margin-right: 20;
-    color: red;
+    color: $error-color;
 }
 
 .avatar {
@@ -32,11 +34,11 @@
     width: 60;
     height: 60;
     border-width: 4;
-    border-color: coral;
+    border-color: $main-color;
     margin-right: 20;
 }
 .avatar--no-photo {
     border-radius: 0;
     border-width: 0;
-    font-size: 60;
+    font-size: $extra-extra-extra-large-size;
 }

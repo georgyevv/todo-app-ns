@@ -11,7 +11,7 @@ import { LoggerService } from "~/app/core/services/logger.service";
 @Component({
     selector: "ns-login-page",
     templateUrl: "./login-page.component.html",
-    styleUrls: ["./login-page.component.css"],
+    styleUrls: ["./login-page.component.scss"],
     moduleId: module.id
 })
 export class LoginPageComponent implements OnDestroy {

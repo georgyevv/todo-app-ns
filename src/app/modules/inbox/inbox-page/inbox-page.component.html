@@ -4,4 +4,14 @@
   <Label class="action-bar-title" text="Inbox"></Label>
 </ActionBar>
 
-<ns-todo-list [todoItems]="todos$ | async" (addTodo)="onAddTodo($event)" (load)="onTodoListLoad()"></ns-todo-list>
+<ns-todo-list *ngIf="(todos$ | async)?.length > 0; else noItems"
+              [todoItems]="todos$ | async"
+              (addTodo)="onAddTodo($event)"></ns-todo-list>
+
+<ng-template #noItems>
+  <StackLayout class="no-items">
+    <Label class="no-items__header" text="All clear"></Label>
+    <Label class="no-items__description" text="Looks like everything's organized in the right place."></Label>
+    <Label class="no-items__help" text="Tap + to add a task"></Label>
+  </StackLayout>
+</ng-template>

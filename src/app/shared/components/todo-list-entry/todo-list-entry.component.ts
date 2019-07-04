@@ -4,7 +4,7 @@ import { Todo } from "../../../core/models/models";
 @Component({
     selector: "ns-todo-list-entry",
     templateUrl: "./todo-list-entry.component.html",
-    styleUrls: ["./todo-list-entry.component.css"],
+    styleUrls: ["./todo-list-entry.component.scss"],
     moduleId: module.id
 })
 export class TodoListEntryComponent {

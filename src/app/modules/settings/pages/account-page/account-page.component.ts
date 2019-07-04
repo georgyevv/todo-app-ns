@@ -17,7 +17,7 @@ import { CameraService } from "~/app/core/services/camera.service";
 @Component({
     selector: "ns-account-page",
     templateUrl: "./account-page.component.html",
-    styleUrls: ["./account-page.component.css"],
+    styleUrls: ["./account-page.component.scss"],
     moduleId: module.id
 })
 export class AccountPageComponent {

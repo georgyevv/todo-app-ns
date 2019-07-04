@@ -4,7 +4,7 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 @Component({
     selector: "ns-priorities-modal",
     templateUrl: "./priorities-modal.component.html",
-    styleUrls: ["./priorities-modal.component.css"],
+    styleUrls: ["./priorities-modal.component.scss"],
     moduleId: module.id
 })
 export class PrioritiesModalComponent {

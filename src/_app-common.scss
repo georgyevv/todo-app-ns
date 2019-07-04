@@ -1,3 +1,6 @@
+// Place any CSS rules you want to apply on both iOS and Android here.
+// This is where the vast majority of your CSS code goe
+
 /*
 In NativeScript, the app.css file is where you place CSS rules that
 you would like to apply to your entire application. Check out
@@ -20,7 +23,7 @@ refer to http://docs.nativescript.org/ui/theme.
   height: 100;
   width: 100;
   vertical-align: center;
-  color: coral;
+  color: $main-color;
 }
 
 .far {
@@ -44,37 +47,37 @@ refer to http://docs.nativescript.org/ui/theme.
   width: 100;
   height: 100;
   border-width: 4;
-  border-color: coral;
+  border-color: $main-color;
 }
 .sidedrawer-avatar--no-photo {
   border-radius: 0;
   border-width: 0;
-  font-size: 100;
+  font-size: $extra-extra-extra-extra-large-size;
 }
 .sidedrawer-header-text {
-  color: black;
-  font-size: 24;
+  color: $normal-text-color;
+  font-size: $extra-large-size;
   font-weight: bold;
   margin-top: 10;
   text-align: center;
   vertical-align: center;
 }
 .sidedrawer-header-footnote {
-  color: black;
+  color: $normal-text-color;
   text-align: center;
-  font-size: 16;
+  font-size: $medium-size;
   vertical-align: center;
 }
 .sidedrawer-list-item {
-  color: black;
-  font-size: 16;
+  color: $normal-text-color;
+  font-size: $medium-size;
   font-weight: bold;
   height: 60;
   padding-left: 10;
   vertical-align: center;
 }
 .sidedrawer-icon {
-  font-size: 18;
+  font-size: $large-size;
   vertical-align: center;
 }
 .sidedrawer-item {
@@ -87,6 +90,6 @@ refer to http://docs.nativescript.org/ui/theme.
 .user-options {
   vertical-align: bottom;
   margin: 10;
-  font-size: 24;
-  color: black;
+  font-size: $extra-large-size;
+  color: $normal-text-color;
 }

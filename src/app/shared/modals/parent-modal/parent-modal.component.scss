@@ -1,7 +1,9 @@
 /* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
 .close-button {
     z-index: 0;
-    color: coral;
+    color: $main-color;
     background-color: white;
 }
 
@@ -11,5 +13,5 @@
     width: 100%;
 }
 .parent__item--active {
-    color: coral;
+    color: $main-color;
 }

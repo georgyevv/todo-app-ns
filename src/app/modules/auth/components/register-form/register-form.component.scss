@@ -1,0 +1,16 @@
+/* Add mobile styles for the component here.  */
+@import '../../../../../app-variables';
+
+.register__button {
+    width: 200;
+    text-align: center;
+    margin-top: 20;
+    color: white;
+    background-color: $main-color;
+    font-size: $medium-size;
+    font-weight: bold;
+}
+
+PropertyEditor {
+    font-size: $medium-size;
+}

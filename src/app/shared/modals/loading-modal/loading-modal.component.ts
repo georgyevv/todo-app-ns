@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 @Component({
     selector: "ns-loading-modal",
     templateUrl: "./loading-modal.component.html",
-    styleUrls: ["./loading-modal.component.css"],
+    styleUrls: ["./loading-modal.component.scss"],
     moduleId: module.id
 })
 export class LoadingModalComponent implements OnDestroy {

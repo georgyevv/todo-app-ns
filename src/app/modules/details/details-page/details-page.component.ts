@@ -11,7 +11,7 @@ import { Store } from "~/app/core/state/app-store";
 @Component({
     selector: "ns-details-page",
     templateUrl: "./details-page.component.html",
-    styleUrls: ["./details-page.component.css"],
+    styleUrls: ["./details-page.component.scss"],
     moduleId: module.id
 })
 export class DetailsPageComponent implements OnInit {

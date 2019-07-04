@@ -1,0 +1,22 @@
+@import '../../../../app-variables';
+
+.action-bar {
+    background-color: $main-color;
+    border-color: $main-color;
+    color: white;
+    z-index: 0;
+}
+
+.no-items {
+    vertical-align: center;
+    text-align: center;
+}
+.no-items__header {
+    font-size: $large-size;
+}
+.no-items__description {
+    font-size: $medium-size;
+}
+.no-items__help {
+    font-size: $medium-size;
+}

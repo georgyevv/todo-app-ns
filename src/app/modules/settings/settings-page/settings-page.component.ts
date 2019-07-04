@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/services/auth.service';
 @Component({
     selector: "ns-settings-page",
     templateUrl: "./settings-page.component.html",
-    styleUrls: ["./settings-page.component.css"],
+    styleUrls: ["./settings-page.component.scss"],
     moduleId: module.id
 })
 export class SettingsPageComponent implements OnInit {

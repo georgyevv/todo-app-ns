@@ -14,7 +14,7 @@ import { TodosService } from "../../../core/services/todos.service";
 @Component({
     selector: "ns-todo-list",
     templateUrl: "./todo-list.component.html",
-    styleUrls: ["./todo-list.component.css"],
+    styleUrls: ["./todo-list.component.scss"],
     moduleId: module.id
 })
 export class TodoListComponent implements AfterViewInit {
@@ -25,7 +25,6 @@ export class TodoListComponent implements AfterViewInit {
 
     @Input() todoItems: Todo[];
     @Output() addTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
-    @Output() load: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private readonly navigationService: NavigationService, private readonly todoRepoService: TodosService) {}
 
@@ -35,8 +34,6 @@ export class TodoListComponent implements AfterViewInit {
         AbsoluteLayout.setTop(button, screen.mainScreen.heightDIPs - Number(button.height) - 150);
         // This is not okay must be changes (20) wtf is 20 ? margin righ - MAGIN NUMBER
         AbsoluteLayout.setLeft(button, screen.mainScreen.widthDIPs - Number(button.width) - 20);
-
-        this.load.emit();
     }
 
     public onItemTap(id: number) {

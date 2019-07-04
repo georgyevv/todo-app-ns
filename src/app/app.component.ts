@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 const firebase = require("nativescript-plugin-firebase");
 

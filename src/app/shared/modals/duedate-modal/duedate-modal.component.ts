@@ -5,7 +5,7 @@ import { DatepickerModalComponent } from '../datepicker-modal/datepicker-modal.c
 @Component({
     selector: "ns-duedate-modal",
     templateUrl: "./duedate-modal.component.html",
-    styleUrls: ["./duedate-modal.component.css"],
+    styleUrls: ["./duedate-modal.component.scss"],
     moduleId: module.id
 })
 export class DuedateModalComponent {

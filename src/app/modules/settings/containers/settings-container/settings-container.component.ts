@@ -4,7 +4,7 @@ import { Page } from "tns-core-modules/ui/page";
 @Component({
     selector: "ns-settings-container",
     templateUrl: "./settings-container.component.html",
-    styleUrls: ["./settings-container.component.css"],
+    styleUrls: ["./settings-container.component.scss"],
     moduleId: module.id
 })
 export class SettingsContainerComponent implements OnInit {

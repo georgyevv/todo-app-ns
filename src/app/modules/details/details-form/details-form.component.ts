@@ -12,7 +12,7 @@ import { ParentModalComponent } from '~/app/shared/modals/parent-modal/parent-mo
 @Component({
     selector: "ns-details-form",
     templateUrl: "./details-form.component.html",
-    styleUrls: ["./details-form.component.css"],
+    styleUrls: ["./details-form.component.scss"],
     moduleId: module.id
 })
 export class DetailsFormComponent {

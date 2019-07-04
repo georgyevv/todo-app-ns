@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
 @Component({
     selector: "ns-register-page",
     templateUrl: "./register-page.component.html",
-    styleUrls: ["./register-page.component.css"],
+    styleUrls: ["./register-page.component.scss"],
     moduleId: module.id
 })
 export class RegisterPageComponent implements OnDestroy {

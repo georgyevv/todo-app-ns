@@ -5,7 +5,7 @@ import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 @Component({
     selector: "ns-datepicker-modal",
     templateUrl: "./datepicker-modal.component.html",
-    styleUrls: ["./datepicker-modal.component.css"],
+    styleUrls: ["./datepicker-modal.component.scss"],
     moduleId: module.id
 })
 export class DatepickerModalComponent {

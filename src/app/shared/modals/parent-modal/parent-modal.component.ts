@@ -8,7 +8,7 @@ import { Todo } from '~/app/core/models/models';
 @Component({
     selector: "ns-parent-modal",
     templateUrl: "./parent-modal.component.html",
-    styleUrls: ["./parent-modal.component.css"],
+    styleUrls: ["./parent-modal.component.scss"],
     moduleId: module.id
 })
 export class ParentModalComponent {

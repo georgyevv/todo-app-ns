@@ -1,4 +1,6 @@
 /* Add mobile styles for the component here.  */
+@import '../../../../app-variables';
+
 .button-disabled {
     z-index: 0;
     color: gray;
@@ -7,6 +9,6 @@
 
 .action-button {
     z-index: 0;
-    color: coral;
+    color: $main-color;
     background-color: white;
 }
