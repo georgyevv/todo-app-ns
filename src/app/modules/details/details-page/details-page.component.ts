@@ -50,7 +50,7 @@ export class DetailsPageComponent implements OnInit {
 
         if (shouldDelete) {
             this.todosRepoService.deleteTodo(this.todoId);
-            this.navigationService.back();
+            this.goBack();
         }
     }
 }

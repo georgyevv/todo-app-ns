@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from "@angular/core";
 import { Todo } from "../../../core/models/models";
 
 @Component({
     selector: "ns-todo-list-entry",
     templateUrl: "./todo-list-entry.component.html",
     styleUrls: ["./todo-list-entry.component.scss"],
-    moduleId: module.id
+    moduleId: module.id,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListEntryComponent {
 
