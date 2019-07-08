@@ -1,10 +1,10 @@
-language: java
+language: android
 jdk: oraclejdk8
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-21.0.2
+    - build-tools-26.0.2
+    - android-26
+    - extra
 - android-21
  - extra-android-m2repository
  - sys-img-armeabi-v7a-android-21
