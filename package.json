@@ -8,6 +8,11 @@
       "version": "5.4.1"
     }
   },
+  "scripts": {
+    "lint": "tslint 'app/**/*.ts' -t verbose",
+    "cisetup": "npm i && tns platform add android && tns build android",
+    "citest": "tns test android --justlaunch"
+  },
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
