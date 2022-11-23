@@ -46,7 +46,7 @@
     "@angular/compiler-cli": "~8.0.0",
     "@ngtools/webpack": "~8.0.0",
     "@types/jasmine": "^3.3.13",
-    "karma": "4.1.0",
+    "karma": "6.4.1",
     "karma-jasmine": "2.0.1",
     "karma-nativescript-launcher": "0.4.0",
     "karma-webpack": "4.0.2",
